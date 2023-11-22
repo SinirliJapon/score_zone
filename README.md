@@ -8,6 +8,7 @@ This application shows fixtures and player statistics of popular football league
 
  - Flutter
  - Provider Pattern
+ - API Integration
  - Dio & Retrofit
  - Json Annotation
  - Auto Route Package
