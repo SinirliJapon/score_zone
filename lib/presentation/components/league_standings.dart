@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:score_zone/constants/colors.dart';
+import 'package:score_zone/constants/styles.dart';
 import 'package:score_zone/model/standings.dart';
-import 'package:score_zone/presentation/components/team_image.dart';
+import 'package:score_zone/presentation/components/average_text.dart';
+import 'package:score_zone/presentation/components/custom_data_row.dart';
 
 class LeagueStandings extends StatelessWidget {
   final List<TableData> standingsTable;
@@ -16,11 +17,9 @@ class LeagueStandings extends StatelessWidget {
       scrollDirection: Axis.vertical,
       child: DataTable(
         columnSpacing: screenHeight / 38,
-        headingRowColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
-          return leagueTextColors[leagueCode];
-        }),
-        headingTextStyle: TextStyle(fontWeight: FontWeight.w900, fontSize: 14, color: leagueColors[leagueCode]),
-        dataTextStyle: TextStyle(color: leagueTextColors[leagueCode], fontWeight: FontWeight.w900),
+        headingRowColor: Styles.customDataHeadingRowColor(leagueCode),
+        headingTextStyle: Styles.customHeadingTextStyle(leagueCode),
+        dataTextStyle: Styles.customDataTextStyle(leagueCode),
         columns: const <DataColumn>[
           DataColumn(label: Text('POS')),
           DataColumn(label: Text('CLUB')),
@@ -32,24 +31,18 @@ class LeagueStandings extends StatelessWidget {
           DataColumn(label: Text('PTS')),
         ],
         rows: standingsTable.map((data) {
+          final teamCrest = data.team.crest.toString();
+          final teamTla = data.team.tla!.toUpperCase();
           return DataRow(
             cells: <DataCell>[
               DataCell(Text(data.position.toString())),
-              DataCell(
-                Row(
-                  children: [
-                    BuildImage(url: data.team.crest),
-                    const SizedBox(width: 5),
-                    Text(data.team.tla.toUpperCase(), style: const TextStyle(fontWeight: FontWeight.w900))
-                  ],
-                ),
-              ),
+              DataCell(CustomDataRow(teamCrest: teamCrest, teamTla: teamTla)),
               DataCell(Text(data.playedGames.toString())),
               DataCell(Text(data.won.toString())),
               DataCell(Text(data.draw.toString())),
               DataCell(Text(data.lost.toString())),
-              DataCell(Text(data.goalDifference > 0 ? '+${data.goalDifference}' : data.goalDifference.toString())),
-              DataCell(Text(data.points.toString(), style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 14))),
+              DataCell(AverageText(goalDifference: data.goalDifference)),
+              DataCell(Text(data.points.toString(), style: Styles.customDataPointTextStyle(leagueCode))),
             ],
           );
         }).toList(),

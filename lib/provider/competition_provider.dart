@@ -7,8 +7,8 @@ class CompetitionProvider extends ChangeNotifier {
 
   CompetitionProvider(this._apiService);
 
-  List<Competitions> _competitions = [];
-  List<Competitions> get competitions => _competitions;
+  List<Competition> _competitions = [];
+  List<Competition> get competitions => _competitions;
 
   late bool isLoading = false;
 

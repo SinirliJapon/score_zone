@@ -23,6 +23,9 @@ dependencies:
   table_sticky_headers: ^2.0.5
   carousel_slider: ^4.2.1
   wheel_slider: ^1.1.1
+  cached_network_image: ^3.3.1
+  cached_network_svg_image: ^1.0.0
+  jovial_svg: ^1.1.20
 
 dev_dependencies:
   flutter_test:

@@ -6,7 +6,7 @@ class AppRouter extends $AppRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(page: LeagueRoute.page, initial: true),
-        AutoRoute(page: FixtureRoute.page),
+        AutoRoute(page: StandingsRoute.page),
         AutoRoute(page: PlayerStatsRoute.page),
       ];
 }

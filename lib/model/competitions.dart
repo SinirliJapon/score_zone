@@ -1,10 +1,5 @@
-import 'package:json_annotation/json_annotation.dart';
-
-part 'competitions.g.dart';
-
-@JsonSerializable()
-class Competitions {
-  Competitions({
+class Competition {
+  Competition({
     required this.id,
     required this.name,
     required this.code,
@@ -15,18 +10,40 @@ class Competitions {
     required this.lastUpdated,
   });
 
-  late final int id;
-  late final String name;
-  late final String code;
-  late final String type;
-  late final String emblem;
-  late final String plan;
-  late final int numberOfAvailableSeasons;
-  late final String lastUpdated;
+  final int? id;
+  final String? name;
+  final String? code;
+  final String? type;
+  final String? emblem;
+  final String? plan;
+  final int? numberOfAvailableSeasons;
+  final String? lastUpdated;
 
-  factory Competitions.fromJson(Map<String, dynamic> json) =>
-      _$CompetitionsFromJson(json);
-  Map<String, dynamic> toJson() => _$CompetitionsToJson(this);
+  factory Competition.fromJson(Map<String, dynamic> json) {
+    return Competition(
+      id: json['id'] as int? ?? 0,
+      name: json['name'] as String? ?? 'Unknown',
+      code: json['code'] as String? ?? 'Unknown',
+      type: json['type'] as String? ?? 'Unknown',
+      emblem: json['emblem'] as String? ?? 'Unknown',
+      plan: json['plan'] as String? ?? 'Unknown',
+      numberOfAvailableSeasons: json['numberOfAvailableSeasons'] as int? ?? 0,
+      lastUpdated: json['lastUpdated'] as String? ?? 'Unknown',
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id ?? 0;
+    data['name'] = name ?? 'Unknown';
+    data['code'] = code ?? 'Unknown';
+    data['type'] = type ?? 'Unknown';
+    data['emblem'] = emblem ?? 'Unknown';
+    data['plan'] = plan ?? 'Unknown';
+    data['numberOfAvailableSeasons'] = numberOfAvailableSeasons ?? 0;
+    data['lastUpdated'] = lastUpdated ?? 'Unknown';
+    return data;
+  }
 }
 
 class CompetitionBaseResponse {
@@ -34,17 +51,15 @@ class CompetitionBaseResponse {
     required this.competitions,
   });
 
-  late final List<Competitions> competitions;
+  final List<Competition> competitions;
 
-  CompetitionBaseResponse.fromJson(Map<String, dynamic> json) {
-    competitions = List.from(json['competitions'])
-        .map((e) => Competitions.fromJson(e))
-        .toList();
-  }
+  CompetitionBaseResponse.fromJson(Map<String, dynamic> json)
+      : competitions = (json['competitions'] as List<dynamic>?)
+            ?.map((e) => Competition.fromJson(e as Map<String, dynamic>))
+            .toList() ?? [];
 
   Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['competitions'] = competitions.map((e) => e.toJson()).toList();
     return data;
   }

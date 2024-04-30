@@ -6,27 +6,14 @@ import 'package:score_zone/presentation/components/league_card.dart';
 import 'package:score_zone/provider/competition_provider.dart';
 
 @RoutePage()
-class LeagueScreen extends StatefulWidget {
+class LeagueScreen extends StatelessWidget {
   const LeagueScreen({Key? key}) : super(key: key);
 
   @override
-  State<LeagueScreen> createState() => _LeagueScreenState();
-}
-
-class _LeagueScreenState extends State<LeagueScreen> {
-  final List<String> excludedLeagues = ['EC'];
-
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(Duration.zero, () {
-      Provider.of<CompetitionProvider>(context, listen: false)
-          .getCompetitions();
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<CompetitionProvider>(context, listen: false).getCompetitions();
+    });
     return Scaffold(
       backgroundColor: leagueScreenColor,
       body: Consumer<CompetitionProvider>(
@@ -34,20 +21,15 @@ class _LeagueScreenState extends State<LeagueScreen> {
           if (value.isLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (value.competitions.isEmpty) {
-            return const Center(child: Text('No competitions available'));
+            return const Center(child: Text('No competitions available...'));
           } else {
-            final filteredCompetitions = value.competitions
-                .where((competition) =>
-                    !excludedLeagues.contains(competition.code))
-                .toList();
             return GridView.builder(
-                itemCount: filteredCompetitions.length,
+                itemCount: value.competitions.length,
                 itemBuilder: (context, index) {
-                  final competition = filteredCompetitions[index];
+                  final competition = value.competitions[index];
                   return LeagueCard(competition);
                 },
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2));
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2));
           }
         },
       ),

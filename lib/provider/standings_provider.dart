@@ -18,12 +18,12 @@ class StandingsProvider extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
 
+    final standingsResponse = await _apiService.fetchStandings(leagueCode);
     try {
-      final standingsResponse = await _apiService.fetchStandings(leagueCode);
       _standingsTable = standingsResponse.standings;
-      competitionName = standingsResponse.competition.name;
-      competitionType = standingsResponse.competition.type;
-      competitionCode = standingsResponse.competition.code;
+      competitionName = standingsResponse.competition.name!;
+      competitionType = standingsResponse.competition.type!;
+      competitionCode = standingsResponse.competition.code!;
     } catch (e) {
       throw Exception('Failed to fetch standings: $e');
     } finally {

@@ -25,7 +25,7 @@ class _ApiService implements ApiService {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<CompetitionBaseResponse>(Options(
       method: 'GET',
@@ -48,13 +48,13 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<StandingsResponse> fetchStandings(String leagueCode) async {
+  Future<Standings> fetchStandings(String leagueCode) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<StandingsResponse>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<Standings>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -70,7 +70,34 @@ class _ApiService implements ApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = StandingsResponse.fromJson(_result.data!);
+    final value = Standings.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ScorerResponse> fetchScorers(String leagueCode) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ScorerResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/competitions/${leagueCode}/scorers',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ScorerResponse.fromJson(_result.data!);
     return value;
   }
 

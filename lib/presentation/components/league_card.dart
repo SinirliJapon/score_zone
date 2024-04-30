@@ -2,34 +2,25 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:score_zone/app_router/app_router.gr.dart';
 import 'package:score_zone/model/competitions.dart';
+import 'package:score_zone/presentation/components/build_image.dart';
 
 class LeagueCard extends StatelessWidget {
-  final Competitions competition;
+  final Competition competition;
 
   const LeagueCard(this.competition, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => AutoRouter.of(context).push(FixtureRoute(leagueCode: competition.code)),
+      onTap: () => AutoRouter.of(context).push(StandingsRoute(leagueCode: competition.code!)),
       child: Padding(
-        padding: const EdgeInsets.all(1.0),
+        padding: const EdgeInsets.all(2.0),
         child: Card(
-          elevation: 2,
+          elevation: 6,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: competition.emblem.endsWith(".svg")
-                ? Column(
-                    children: [
-                      const Icon(Icons.sports_soccer_outlined, size: 80),
-                      const SizedBox(height: 20),
-                      Text(competition.name.toString()),
-                    ],
-                  )
-                : Image.network(
-                    competition.emblem,
-                    height: 120,
-                  ),
+            child: BuildImage(url: competition.emblem!, width: 120),
           ),
         ),
       ),

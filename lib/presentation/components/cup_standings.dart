@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:score_zone/constants/colors.dart';
+import 'package:score_zone/constants/styles.dart';
 import 'package:score_zone/model/standings.dart';
-import 'package:score_zone/presentation/components/team_image.dart';
+import 'package:score_zone/presentation/components/average_text.dart';
+import 'package:score_zone/presentation/components/build_image.dart';
 
 class CupStandings extends StatelessWidget {
   final List<StandingsData> standingsData;
+  final String leagueCode;
 
-  const CupStandings(this.standingsData, {Key? key}) : super(key: key);
+  const CupStandings(this.standingsData, {Key? key, required this.leagueCode}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +18,6 @@ class CupStandings extends StatelessWidget {
       builder: (context, constraints) {
         final screenHeight = constraints.maxHeight;
         final screenWidth = constraints.maxWidth;
-
         return Center(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: screenWidth / 25),
@@ -33,17 +35,18 @@ class CupStandings extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: screenHeight / 50),
                   child: Card(
                     elevation: 6,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        groupNameContainer(groupStandings, screenHeight),
+                        GroupNameContainer(groupStandings: groupStandings, screenHeight: screenHeight),
                         DataTable(
                           columnSpacing: screenWidth / 40,
                           dataRowMinHeight: screenHeight / 20,
                           border: const TableBorder(top: BorderSide(color: standingsScreenColor)),
-                          headingTextStyle: const TextStyle(fontWeight: FontWeight.w900, fontSize: 14, color: standingsScreenColor),
-                          dataTextStyle: const TextStyle(fontWeight: FontWeight.w700, color: standingsScreenColor),
+                          headingRowColor: Styles.customDataHeadingRowColor(leagueCode),
+                          headingTextStyle: Styles.customHeadingTextStyle(leagueCode),
+                          dataTextStyle: Styles.customDataTextStyle(leagueCode),
                           columns: const <DataColumn>[
                             DataColumn(label: Text('POS')),
                             DataColumn(label: Text('CLUB')),
@@ -58,14 +61,14 @@ class CupStandings extends StatelessWidget {
                             return DataRow(
                               cells: <DataCell>[
                                 DataCell(Text(data.position.toString())),
-                                DataCell(
-                                    Row(children: [BuildImage(url: data.team.crest), const SizedBox(width: 5), Text(data.team.tla.toUpperCase())])),
+                                DataCell(TeamImage(data: data)),
                                 DataCell(Text(data.playedGames.toString())),
                                 DataCell(Text(data.won.toString())),
                                 DataCell(Text(data.draw.toString())),
                                 DataCell(Text(data.lost.toString())),
-                                DataCell(Text(data.goalDifference > 0 ? '+${data.goalDifference}' : data.goalDifference.toString())),
-                                DataCell(Text(data.points.toString(), style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 14))),
+                                DataCell(AverageText(goalDifference: data.goalDifference)),
+                                DataCell(
+                                    Text(data.points.toString(), style: Styles.customDataPointTextStyle(leagueCode))),
                               ],
                             );
                           }).toList(),
@@ -81,13 +84,28 @@ class CupStandings extends StatelessWidget {
       },
     );
   }
+}
 
-  Container groupNameContainer(StandingsData groupStandings, double screenHeight) {
+class GroupNameContainer extends StatelessWidget {
+  final StandingsData groupStandings;
+  final double screenHeight;
+
+  const GroupNameContainer({
+    Key? key,
+    required this.groupStandings,
+    required this.screenHeight,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       height: screenHeight / 15,
       decoration: const BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10.0),
+          topRight: Radius.circular(10.0),
+        ),
       ),
       padding: const EdgeInsets.all(8.0),
       child: Center(
@@ -101,5 +119,23 @@ class CupStandings extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class TeamImage extends StatelessWidget {
+  const TeamImage({
+    super.key,
+    required this.data,
+  });
+
+  final TableData data;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(children: [
+      BuildImage(url: data.team.crest!),
+      const SizedBox(width: 5),
+      Text(data.team.tla!.toUpperCase()),
+    ]);
   }
 }
