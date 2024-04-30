@@ -12,6 +12,6 @@ abstract class Styles {
       TextStyle(color: leagueTextColors[leagueCode], fontWeight: FontWeight.w900, fontSize: 16);    
 
   static TextStyle customHeadingTextStyle(String leagueCode) =>
-      TextStyle(fontWeight: FontWeight.w900, fontSize: 16, color: leagueColors[leagueCode]);
+      TextStyle(fontWeight: FontWeight.w900, fontSize: 14, color: leagueColors[leagueCode]);
 
 }

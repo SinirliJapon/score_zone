@@ -40,9 +40,9 @@ class PlayerStatsScreen extends StatelessWidget {
               headingTextStyle: Styles.customHeadingTextStyle(leagueCode),
               dataTextStyle: Styles.customDataTextStyle(leagueCode),
               columns: const <DataColumn>[
-                DataColumn(label: Text('Pos')),
-                DataColumn(label: Text('Name')),
-                DataColumn(label: Text('Team')),
+                DataColumn(label: Text('POS')),
+                DataColumn(label: Text('NAME')),
+                DataColumn(label: Text('CLUB')),
                 DataColumn(label: Text('A')),
                 DataColumn(label: Text('P')),
                 DataColumn(label: Text('G')),
