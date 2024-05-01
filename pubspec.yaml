@@ -26,6 +26,7 @@ dependencies:
   cached_network_image: ^3.3.1
   cached_network_svg_image: ^1.0.0
   jovial_svg: ^1.1.20
+  expansion_tile_group: ^1.2.4
 
 dev_dependencies:
   flutter_test:

@@ -35,6 +35,7 @@ class BuildImage extends StatelessWidget {
     return CachedNetworkImage(
       imageUrl: url,
       width: width,
+      height: width,
       placeholder: (BuildContext context, String url) {
         return _buildPlaceholder();
       },

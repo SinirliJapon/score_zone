@@ -8,5 +8,6 @@ class AppRouter extends $AppRouter {
         AutoRoute(page: LeagueRoute.page, initial: true),
         AutoRoute(page: StandingsRoute.page),
         AutoRoute(page: PlayerStatsRoute.page),
+        AutoRoute(page: LeagueMatchesRoute.page),
       ];
 }
