@@ -8,29 +8,41 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i4;
-import 'package:flutter/material.dart' as _i5;
-import 'package:score_zone/presentation/screens/league_screen.dart' as _i1;
+import 'package:auto_route/auto_route.dart' as _i5;
+import 'package:flutter/material.dart' as _i6;
+import 'package:score_zone/presentation/screens/league_matches_screen.dart'
+    as _i1;
+import 'package:score_zone/presentation/screens/league_screen.dart' as _i2;
 import 'package:score_zone/presentation/screens/player_stats_screen.dart'
-    as _i2;
-import 'package:score_zone/presentation/screens/standings_screen.dart' as _i3;
+    as _i3;
+import 'package:score_zone/presentation/screens/standings_screen.dart' as _i4;
 
-abstract class $AppRouter extends _i4.RootStackRouter {
+abstract class $AppRouter extends _i5.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i4.PageFactory> pagesMap = {
-    LeagueRoute.name: (routeData) {
-      return _i4.AutoRoutePage<dynamic>(
+  final Map<String, _i5.PageFactory> pagesMap = {
+    LeagueMatchesRoute.name: (routeData) {
+      final args = routeData.argsAs<LeagueMatchesRouteArgs>();
+      return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i1.LeagueScreen(),
+        child: _i1.LeagueMatchesScreen(
+          key: args.key,
+          leagueCode: args.leagueCode,
+        ),
+      );
+    },
+    LeagueRoute.name: (routeData) {
+      return _i5.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i2.LeagueScreen(),
       );
     },
     PlayerStatsRoute.name: (routeData) {
       final args = routeData.argsAs<PlayerStatsRouteArgs>();
-      return _i4.AutoRoutePage<dynamic>(
+      return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i2.PlayerStatsScreen(
+        child: _i3.PlayerStatsScreen(
           key: args.key,
           leagueCode: args.leagueCode,
           leagueTitle: args.leagueTitle,
@@ -39,9 +51,9 @@ abstract class $AppRouter extends _i4.RootStackRouter {
     },
     StandingsRoute.name: (routeData) {
       final args = routeData.argsAs<StandingsRouteArgs>();
-      return _i4.AutoRoutePage<dynamic>(
+      return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i3.StandingsScreen(
+        child: _i4.StandingsScreen(
           key: args.key,
           leagueCode: args.leagueCode,
         ),
@@ -51,9 +63,47 @@ abstract class $AppRouter extends _i4.RootStackRouter {
 }
 
 /// generated route for
-/// [_i1.LeagueScreen]
-class LeagueRoute extends _i4.PageRouteInfo<void> {
-  const LeagueRoute({List<_i4.PageRouteInfo>? children})
+/// [_i1.LeagueMatchesScreen]
+class LeagueMatchesRoute extends _i5.PageRouteInfo<LeagueMatchesRouteArgs> {
+  LeagueMatchesRoute({
+    _i6.Key? key,
+    required String leagueCode,
+    List<_i5.PageRouteInfo>? children,
+  }) : super(
+          LeagueMatchesRoute.name,
+          args: LeagueMatchesRouteArgs(
+            key: key,
+            leagueCode: leagueCode,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'LeagueMatchesRoute';
+
+  static const _i5.PageInfo<LeagueMatchesRouteArgs> page =
+      _i5.PageInfo<LeagueMatchesRouteArgs>(name);
+}
+
+class LeagueMatchesRouteArgs {
+  const LeagueMatchesRouteArgs({
+    this.key,
+    required this.leagueCode,
+  });
+
+  final _i6.Key? key;
+
+  final String leagueCode;
+
+  @override
+  String toString() {
+    return 'LeagueMatchesRouteArgs{key: $key, leagueCode: $leagueCode}';
+  }
+}
+
+/// generated route for
+/// [_i2.LeagueScreen]
+class LeagueRoute extends _i5.PageRouteInfo<void> {
+  const LeagueRoute({List<_i5.PageRouteInfo>? children})
       : super(
           LeagueRoute.name,
           initialChildren: children,
@@ -61,17 +111,17 @@ class LeagueRoute extends _i4.PageRouteInfo<void> {
 
   static const String name = 'LeagueRoute';
 
-  static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
+  static const _i5.PageInfo<void> page = _i5.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i2.PlayerStatsScreen]
-class PlayerStatsRoute extends _i4.PageRouteInfo<PlayerStatsRouteArgs> {
+/// [_i3.PlayerStatsScreen]
+class PlayerStatsRoute extends _i5.PageRouteInfo<PlayerStatsRouteArgs> {
   PlayerStatsRoute({
-    _i5.Key? key,
+    _i6.Key? key,
     required String leagueCode,
     required String leagueTitle,
-    List<_i4.PageRouteInfo>? children,
+    List<_i5.PageRouteInfo>? children,
   }) : super(
           PlayerStatsRoute.name,
           args: PlayerStatsRouteArgs(
@@ -84,8 +134,8 @@ class PlayerStatsRoute extends _i4.PageRouteInfo<PlayerStatsRouteArgs> {
 
   static const String name = 'PlayerStatsRoute';
 
-  static const _i4.PageInfo<PlayerStatsRouteArgs> page =
-      _i4.PageInfo<PlayerStatsRouteArgs>(name);
+  static const _i5.PageInfo<PlayerStatsRouteArgs> page =
+      _i5.PageInfo<PlayerStatsRouteArgs>(name);
 }
 
 class PlayerStatsRouteArgs {
@@ -95,7 +145,7 @@ class PlayerStatsRouteArgs {
     required this.leagueTitle,
   });
 
-  final _i5.Key? key;
+  final _i6.Key? key;
 
   final String leagueCode;
 
@@ -108,12 +158,12 @@ class PlayerStatsRouteArgs {
 }
 
 /// generated route for
-/// [_i3.StandingsScreen]
-class StandingsRoute extends _i4.PageRouteInfo<StandingsRouteArgs> {
+/// [_i4.StandingsScreen]
+class StandingsRoute extends _i5.PageRouteInfo<StandingsRouteArgs> {
   StandingsRoute({
-    _i5.Key? key,
+    _i6.Key? key,
     required String leagueCode,
-    List<_i4.PageRouteInfo>? children,
+    List<_i5.PageRouteInfo>? children,
   }) : super(
           StandingsRoute.name,
           args: StandingsRouteArgs(
@@ -125,8 +175,8 @@ class StandingsRoute extends _i4.PageRouteInfo<StandingsRouteArgs> {
 
   static const String name = 'StandingsRoute';
 
-  static const _i4.PageInfo<StandingsRouteArgs> page =
-      _i4.PageInfo<StandingsRouteArgs>(name);
+  static const _i5.PageInfo<StandingsRouteArgs> page =
+      _i5.PageInfo<StandingsRouteArgs>(name);
 }
 
 class StandingsRouteArgs {
@@ -135,7 +185,7 @@ class StandingsRouteArgs {
     required this.leagueCode,
   });
 
-  final _i5.Key? key;
+  final _i6.Key? key;
 
   final String leagueCode;
 

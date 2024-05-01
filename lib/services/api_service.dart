@@ -1,6 +1,7 @@
 import 'package:retrofit/http.dart';
 import 'package:dio/dio.dart';
 import 'package:score_zone/model/competitions.dart';
+import 'package:score_zone/model/match.dart';
 import 'package:score_zone/model/scorers.dart';
 import 'package:score_zone/model/standings.dart';
 
@@ -18,4 +19,7 @@ abstract class ApiService {
 
   @GET('/competitions/{leagueCode}/scorers')
   Future<ScorerResponse> fetchScorers(@Path('leagueCode') String leagueCode);
+
+  @GET('/competitions/{leagueCode}/matches')
+  Future<MatchBaseResponse> fetchMatches(@Path('leagueCode') String leagueCode);
 }

@@ -14,4 +14,10 @@ abstract class Styles {
   static TextStyle customHeadingTextStyle(String leagueCode) =>
       TextStyle(fontWeight: FontWeight.w900, fontSize: 14, color: leagueColors[leagueCode]);
 
+  static TextStyle customMatchTeamTextStyle(String leagueCode) =>
+      TextStyle(fontWeight: FontWeight.w900, fontSize: 18, color: leagueColors[leagueCode]);    
+
+  static TextStyle customMatchResultTextStyle(String leagueCode) =>
+      TextStyle(color: leagueTextColors[leagueCode], fontSize: 18, fontWeight: FontWeight.w900);    
+
 }

@@ -20,7 +20,7 @@ class CompetitionProvider extends ChangeNotifier {
       final competitionResponse = await _apiService.fetchCompetitions();
       _competitions = competitionResponse.competitions;
     } catch (e) {
-      rethrow;
+      throw Exception('Failed to fetch competitions: $e');
     } finally {
       isLoading = false;
       notifyListeners();

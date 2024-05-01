@@ -31,7 +31,10 @@ class StandingsScreen extends StatelessWidget {
           appBar: AppBar(
             foregroundColor: leagueTextColors[leagueCode] ?? Colors.black,
             backgroundColor: leagueColors[leagueCode]?.withOpacity(0.8) ?? Colors.grey,
-            actions: [PlayerStatsScreenButton(leagueCode: leagueCode, leagueTitle: value.competitionName)],
+            actions: [
+              PlayerStatsScreenButton(leagueCode: leagueCode, leagueTitle: value.competitionName),
+              LeagueMatchesScreenButton(leagueCode: leagueCode)
+            ],
             // TODO: This is for temporary
             title: LeaugeTitle(leagueCode: leagueCode, competitionName: value.competitionName),
           ),
@@ -85,5 +88,23 @@ class PlayerStatsScreenButton extends StatelessWidget {
               PlayerStatsRoute(leagueCode: leagueCode, leagueTitle: leagueTitle),
             ),
         icon: const Icon(Icons.person));
+  }
+}
+
+class LeagueMatchesScreenButton extends StatelessWidget {
+  const LeagueMatchesScreenButton({
+    super.key,
+    required this.leagueCode,
+  });
+
+  final String leagueCode;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+        onPressed: () => AutoRouter.of(context).push(
+              LeagueMatchesRoute(leagueCode: leagueCode),
+            ),
+        icon: const Icon(Icons.sports_soccer));
   }
 }
