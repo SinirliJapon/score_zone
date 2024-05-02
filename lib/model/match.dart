@@ -61,9 +61,9 @@ class Match {
         season: json['season'] != null ? Season.fromJson(json['season']) : null,
         id: json['id'] as int? ?? 0,
         utcDate: json['utcDate'] != null ? DateTime.parse(json['utcDate']) : null,
-        status: json['status'] as String? ?? 'Unkown',
+        status: json['status'] as String? ?? 'Unknown',
         matchday: json['matchday'] as int? ?? 0,
-        stage: json['stage'] as String? ?? 'Unkown',
+        stage: json['stage'] as String? ?? 'Unknown',
         group: json['group'],
         lastUpdated: json['lastUpdated'] != null ? DateTime.parse(json['lastUpdated']) : null,
         homeTeam: json['homeTeam'] != null ? Team.fromJson(json['homeTeam']) : null,
@@ -125,7 +125,7 @@ class Referee {
   factory Referee.fromJson(Map<String, dynamic> json) => Referee(
         id: json['id'] as int? ?? 0,
         name: json['name'] as String? ?? 'Unknown',
-        type: json['type'] as String? ?? 'Unkown',
+        type: json['type'] as String? ?? 'Unknown',
         nationality: json['nationality'] as String? ?? 'Unknown',
       );
 

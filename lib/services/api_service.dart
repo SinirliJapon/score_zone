@@ -21,5 +21,11 @@ abstract class ApiService {
   Future<ScorerResponse> fetchScorers(@Path('leagueCode') String leagueCode);
 
   @GET('/competitions/{leagueCode}/matches')
-  Future<MatchBaseResponse> fetchMatches(@Path('leagueCode') String leagueCode);
+  Future<MatchBaseResponse> fetchCurrentMatches(@Path('leagueCode') String leagueCode);
+
+  @GET('/competitions/{leagueCode}/matches')
+  Future<MatchBaseResponse> fetchIntendedMatches(
+    @Path('leagueCode') String leagueCode,
+    @Query('matchday') String matchday,
+  );
 }
