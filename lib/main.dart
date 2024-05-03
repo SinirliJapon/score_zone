@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart'; // Import flutter_dotenv package
 import 'package:provider/provider.dart';
 import 'package:score_zone/app_router/app_router.dart';
 import 'package:score_zone/provider/competition_provider.dart';
@@ -9,8 +10,10 @@ import 'package:score_zone/provider/player_stats_provider.dart';
 import 'package:score_zone/provider/standings_provider.dart';
 import 'package:score_zone/services/api_service.dart';
 
-void main() {
-  final dio = Dio(BaseOptions(headers: {"X-Auth-Token": "d6cc355ca3de45da92628ae7b7dbdef7"}));
+void main() async {
+  await dotenv.load();
+  final apiKey = dotenv.env['API_KEY'];
+  final dio = Dio(BaseOptions(headers: {"X-Auth-Token": apiKey}));
   final apiService = ApiService(dio);
   runApp(
     MultiProvider(
