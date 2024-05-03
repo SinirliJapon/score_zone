@@ -27,6 +27,8 @@ dependencies:
   cached_network_svg_image: ^1.0.0
   jovial_svg: ^1.1.20
   expansion_tile_group: ^1.2.4
+  flutter_dotenv: ^5.1.0
+  intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:
@@ -44,4 +46,5 @@ flutter:
 
   assets:
     - assets/
+    - .env
 

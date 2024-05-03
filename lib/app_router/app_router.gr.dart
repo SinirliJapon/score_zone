@@ -29,6 +29,7 @@ abstract class $AppRouter extends _i5.RootStackRouter {
         child: _i1.LeagueMatchesScreen(
           key: args.key,
           leagueCode: args.leagueCode,
+          currentMatchDay: args.currentMatchDay,
         ),
       );
     },
@@ -68,12 +69,14 @@ class LeagueMatchesRoute extends _i5.PageRouteInfo<LeagueMatchesRouteArgs> {
   LeagueMatchesRoute({
     _i6.Key? key,
     required String leagueCode,
+    required String currentMatchDay,
     List<_i5.PageRouteInfo>? children,
   }) : super(
           LeagueMatchesRoute.name,
           args: LeagueMatchesRouteArgs(
             key: key,
             leagueCode: leagueCode,
+            currentMatchDay: currentMatchDay,
           ),
           initialChildren: children,
         );
@@ -88,15 +91,18 @@ class LeagueMatchesRouteArgs {
   const LeagueMatchesRouteArgs({
     this.key,
     required this.leagueCode,
+    required this.currentMatchDay,
   });
 
   final _i6.Key? key;
 
   final String leagueCode;
 
+  final String currentMatchDay;
+
   @override
   String toString() {
-    return 'LeagueMatchesRouteArgs{key: $key, leagueCode: $leagueCode}';
+    return 'LeagueMatchesRouteArgs{key: $key, leagueCode: $leagueCode, currentMatchDay: $currentMatchDay}';
   }
 }
 

@@ -108,7 +108,7 @@ class Season {
       id: json['id'] as int? ?? 0,
       startDate: json['startDate'] as String? ?? 'Unknown',
       endDate: json['endDate'] as String? ?? 'Unknown',
-      currentMatchday: json['currentMatchday'] as int? ?? 0,
+      currentMatchday: json['currentMatchday'] as int? ?? 1,
       winner: json['winner'],
     );
   }

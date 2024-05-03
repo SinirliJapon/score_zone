@@ -11,6 +11,7 @@ class StandingsProvider extends ChangeNotifier {
   String competitionName = '';
   String competitionType = '';
   String competitionCode = '';
+  int currentMatchDay = 0;
 
   StandingsProvider(this._apiService);
 
@@ -21,6 +22,7 @@ class StandingsProvider extends ChangeNotifier {
     final standingsResponse = await _apiService.fetchStandings(leagueCode);
     try {
       _standingsTable = standingsResponse.standings;
+      currentMatchDay = standingsResponse.season.currentMatchday!;
       competitionName = standingsResponse.competition.name!;
       competitionType = standingsResponse.competition.type!;
       competitionCode = standingsResponse.competition.code!;
