@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:score_zone/constants/colors.dart';
 
+//TODO: Refactor all styles
+
 abstract class Styles {
   static MaterialStateProperty<Color?>? customDataHeadingRowColor(String leagueCode) =>
       MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) => leagueTextColors[leagueCode]);
@@ -18,6 +20,12 @@ abstract class Styles {
       TextStyle(fontWeight: FontWeight.w900, fontSize: 18, color: leagueColors[leagueCode]);    
 
   static TextStyle customMatchResultTextStyle(String leagueCode) =>
-      TextStyle(color: leagueTextColors[leagueCode], fontSize: 18, fontWeight: FontWeight.w900);    
+      TextStyle(color: leagueTextColors[leagueCode], fontSize: 18, fontWeight: FontWeight.w900);
+
+  static TextStyle customLiveMatchResultTextStyle(String leagueCode) =>
+      const TextStyle(color: Colors.red, fontSize: 18, fontWeight: FontWeight.w900);   
+
+  static TextStyle customNotFinishedMatchResultTextStyle(String leagueCode) =>
+      TextStyle(color: leagueColors[leagueCode], fontSize: 18, fontWeight: FontWeight.w900);        
 
 }

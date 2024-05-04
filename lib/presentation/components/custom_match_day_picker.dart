@@ -23,7 +23,7 @@ class CustomMatchDayPicker extends StatelessWidget {
       style: TextStyle(fontWeight: FontWeight.w900, fontSize: 18, color: backgroundColor),
       value: value.currentMatchday,
       items: List.generate(
-        38,
+        totalMatchDays,
         (index) => DropdownMenuItem<int>(value: index + 1, child: Text('${index + 1}')),
       ),
       onChanged: (int? newMatchday) {
