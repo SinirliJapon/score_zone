@@ -16,7 +16,7 @@ class LeagueStandings extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: DataTable(
-        columnSpacing: screenHeight / 38,
+        columnSpacing: screenHeight / 40,
         headingRowColor: Styles.customDataHeadingRowColor(leagueCode),
         headingTextStyle: Styles.customHeadingTextStyle(leagueCode),
         dataTextStyle: Styles.customDataTextStyle(leagueCode),
