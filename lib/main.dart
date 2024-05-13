@@ -7,6 +7,7 @@ import 'package:score_zone/app_router/app_router.dart';
 import 'package:score_zone/provider/competition_provider.dart';
 import 'package:score_zone/provider/league_matches_provider.dart';
 import 'package:score_zone/provider/player_stats_provider.dart';
+import 'package:score_zone/provider/score_opacity_provider.dart';
 import 'package:score_zone/provider/standings_provider.dart';
 import 'package:score_zone/services/api_service.dart';
 
@@ -23,6 +24,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => StandingsProvider(apiService)),
         ChangeNotifierProvider(create: (context) => PlayerStatsProvider(apiService)),
         ChangeNotifierProvider(create: (context) => LeagueMatchesProvider(apiService)),
+        ChangeNotifierProvider(create: (context) => ScoreOpacityProvider()),
       ],
       child: const MyApp(),
     ),
