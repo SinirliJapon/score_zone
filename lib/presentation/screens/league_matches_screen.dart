@@ -38,7 +38,7 @@ class LeagueMatchesScreen extends StatelessWidget {
               backgroundColor: leagueColors[leagueCode]?.withOpacity(0.8) ?? Colors.grey,
               title: const Text('League Match Day:'),
               actions: [
-                CustomMatchDayPicker(value: value, leagueCode: leagueCode, totalMatchDays: value.currentMatchday),
+                CustomMatchDayPicker(value: value, leagueCode: leagueCode, totalMatchDays: value.totalMatchDay),
               ],
             ),
             body: ListView.separated(
