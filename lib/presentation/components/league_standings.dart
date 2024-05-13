@@ -15,37 +15,40 @@ class LeagueStandings extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
-      child: DataTable(
-        columnSpacing: screenHeight / 40,
-        headingRowColor: Styles.customDataHeadingRowColor(leagueCode),
-        headingTextStyle: Styles.customHeadingTextStyle(leagueCode),
-        dataTextStyle: Styles.customDataTextStyle(leagueCode),
-        columns: const <DataColumn>[
-          DataColumn(label: Text('POS')),
-          DataColumn(label: Text('CLUB')),
-          DataColumn(label: Text('PL')),
-          DataColumn(label: Text('W')),
-          DataColumn(label: Text('D')),
-          DataColumn(label: Text('L')),
-          DataColumn(label: Text('GD')),
-          DataColumn(label: Text('PTS')),
-        ],
-        rows: standingsTable.map((data) {
-          final teamCrest = data.team.crest.toString();
-          final teamTla = data.team.tla!.toUpperCase();
-          return DataRow(
-            cells: <DataCell>[
-              DataCell(Text(data.position.toString())),
-              DataCell(CustomDataRow(teamCrest: teamCrest, teamTla: teamTla)),
-              DataCell(Text(data.playedGames.toString())),
-              DataCell(Text(data.won.toString())),
-              DataCell(Text(data.draw.toString())),
-              DataCell(Text(data.lost.toString())),
-              DataCell(AverageText(goalDifference: data.goalDifference)),
-              DataCell(Text(data.points.toString(), style: Styles.customDataPointTextStyle(leagueCode))),
-            ],
-          );
-        }).toList(),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 4.0, right: 4.0),
+        child: DataTable(
+          columnSpacing: screenHeight / 42,
+          headingRowColor: Styles.customDataHeadingRowColor(leagueCode),
+          headingTextStyle: Styles.customHeadingTextStyle(leagueCode),
+          dataTextStyle: Styles.customDataTextStyle(leagueCode),
+          columns: const <DataColumn>[
+            DataColumn(label: Text('POS')),
+            DataColumn(label: Text('CLUB')),
+            DataColumn(label: Text('PL')),
+            DataColumn(label: Text('W')),
+            DataColumn(label: Text('D')),
+            DataColumn(label: Text('L')),
+            DataColumn(label: Text('GD')),
+            DataColumn(label: Text('PTS')),
+          ],
+          rows: standingsTable.map((data) {
+            final teamCrest = data.team.crest.toString();
+            final teamTla = data.team.tla!.toUpperCase();
+            return DataRow(
+              cells: <DataCell>[
+                DataCell(Text(data.position.toString())),
+                DataCell(CustomDataRow(teamCrest: teamCrest, teamTla: teamTla)),
+                DataCell(Text(data.playedGames.toString())),
+                DataCell(Text(data.won.toString())),
+                DataCell(Text(data.draw.toString())),
+                DataCell(Text(data.lost.toString())),
+                DataCell(AverageText(goalDifference: data.goalDifference)),
+                DataCell(Text(data.points.toString(), style: Styles.customDataPointTextStyle(leagueCode))),
+              ],
+            );
+          }).toList(),
+        ),
       ),
     );
   }

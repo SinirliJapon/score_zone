@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:score_zone/constants/colors.dart';
 import 'package:score_zone/constants/styles.dart';
 import 'package:score_zone/model/match.dart';
+import 'package:score_zone/provider/score_opacity_provider.dart';
 
 class CustomTeamScoreCard extends StatelessWidget {
   const CustomTeamScoreCard({
@@ -36,9 +38,13 @@ class CustomTeamScoreCard extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(
-            '${match.score?.fullTime?['home'] ?? 0}  -  ${match.score?.fullTime?['away'] ?? 0}',
-            style: Styles.customLiveMatchResultTextStyle(leagueCode),
+          child: AnimatedOpacity(
+            opacity: context.watch<ScoreOpacityProvider>().opacityLevel,
+            duration: const Duration(seconds: 1),
+            child: Text(
+              '${match.score?.fullTime?['home'] ?? 0}  -  ${match.score?.fullTime?['away'] ?? 0}',
+              style: Styles.customLiveMatchResultTextStyle(leagueCode),
+            ),
           ),
         ),
       );
