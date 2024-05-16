@@ -102,7 +102,7 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<MatchBaseResponse> fetchCurrentMatches(String leagueCode) async {
+  Future<MatchBaseResponse> fetchMatches(String leagueCode) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -129,7 +129,7 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<MatchBaseResponse> fetchIntendedMatches(
+  Future<MatchBaseResponse> fetchDesiredMatches(
     String leagueCode,
     String matchday,
   ) async {

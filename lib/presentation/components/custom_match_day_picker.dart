@@ -21,14 +21,14 @@ class CustomMatchDayPicker extends StatelessWidget {
       dropdownColor: foregroundColor,
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       style: TextStyle(fontWeight: FontWeight.w900, fontSize: 18, color: backgroundColor),
-      value: value.currentMatchday,
+      value: value.desiredMatchDay,
       items: List.generate(
         totalMatchDays,
         (index) => DropdownMenuItem<int>(value: index + 1, child: Text('${index + 1}')),
       ),
-      onChanged: (int? newMatchday) {
-        if (newMatchday != null) {
-          provider.fetchMatchesForCurrentMatchday(leagueCode, newMatchday.toString());
+      onChanged: (int? newMatchDay) {
+        if (newMatchDay != null) {
+          provider.fetchMatchesForCurrentMatchday(leagueCode, newMatchDay.toString());
         }
       },
     );
