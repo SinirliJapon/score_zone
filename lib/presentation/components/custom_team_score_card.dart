@@ -18,6 +18,7 @@ class CustomTeamScoreCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isPostponed = match.utcDate!.isBefore(DateTime.now());
     if (match.status == "FINISHED") {
       return Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
@@ -56,10 +57,20 @@ class CustomTeamScoreCard extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(
-            DateFormat('HH:mm').format(match.utcDate!),
-            style: Styles.customNotFinishedMatchResultTextStyle(leagueCode),
-          ),
+          child: isPostponed
+              ? Text(
+                  ' PPD ',
+                  style: Styles.customNotFinishedMatchResultTextStyle(leagueCode),
+                )
+              : match.utcDate == null
+                  ? Text(
+                      ' TBD ',
+                      style: Styles.customNotFinishedMatchResultTextStyle(leagueCode),
+                    )
+                  : Text(
+                      DateFormat('HH:mm').format(match.utcDate!),
+                      style: Styles.customNotFinishedMatchResultTextStyle(leagueCode),
+                    ),
         ),
       );
     }

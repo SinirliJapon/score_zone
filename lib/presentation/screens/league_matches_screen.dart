@@ -27,10 +27,10 @@ class LeagueMatchesScreen extends StatelessWidget {
       builder: (context, value, child) {
         if (value.isLoading) {
           return const Center(child: CircularProgressIndicator());
-        } else if (value.matches.isEmpty) {
+        } else if (value.desiredMatches.isEmpty) {
           return const Center(child: Text('No league matches available...'));
         } else {
-          final matches = value.matches.toList();
+          final matches = value.desiredMatches.toList();
           return Scaffold(
             backgroundColor: leagueColors[leagueCode]?.withOpacity(0.8) ?? Colors.grey,
             appBar: AppBar(

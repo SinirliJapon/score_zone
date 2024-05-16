@@ -8,30 +8,30 @@ class LeagueMatchesProvider extends ChangeNotifier {
   LeagueMatchesProvider(this._apiService);
 
   bool isLoading = false;
-  int _currentMatchday = 1;
+  int _desiredMatchDay = 1;
+  int _currentMatchDay = 1;
   int _totalMatchDay = 46;
+  
+  List<Match> _desiredMatches = [];
+  List<Match> get desiredMatches => _desiredMatches;
 
-  List<Match> _currentMatches = [];
-  List<Match> get matches => _currentMatches;
-
-  int get currentMatchday => _currentMatchday;
+  int get desiredMatchDay => _desiredMatchDay;
   int get totalMatchDay => _totalMatchDay;
 
-  Future<void> fetchMatchesForCurrentMatchday(String leagueCode, String currentMatchDay) async {
+  Future<void> fetchMatchesForCurrentMatchday(String leagueCode, String desiredMatchDay) async {
     isLoading = true;
     notifyListeners();
     // All matches called and filtered after
     try {
-      final totalMatchResponse = await _apiService.fetchCurrentMatches(leagueCode);
-      _currentMatches =
-          totalMatchResponse.matches.where((match) => match.matchday == int.parse(currentMatchDay)).toList();
-      _currentMatchday = int.parse(currentMatchDay);
+      final totalMatchResponse = await _apiService.fetchMatches(leagueCode);
+      _desiredMatches =
+          totalMatchResponse.matches.where((match) => match.matchday == int.parse(desiredMatchDay)).toList();
+      _desiredMatchDay = int.parse(desiredMatchDay);
+      _currentMatchDay = totalMatchResponse.matches.first.season!.currentMatchday!;
       _totalMatchDay = totalMatchResponse.matches.last.matchday!;
-      if (_totalMatchDay == 0) {
-        _totalMatchDay = totalMatchResponse.matches.first.season!.currentMatchday!;
+      if (_totalMatchDay < _currentMatchDay) {
+        _totalMatchDay = _currentMatchDay;
       }
-      print('Current: $_currentMatchday');
-      print('Total: $_totalMatchDay');
     } catch (e) {
       throw Exception('Failed to fetch league matches: $e');
     } finally {
