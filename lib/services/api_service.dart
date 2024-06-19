@@ -17,7 +17,7 @@ abstract class ApiService {
   @GET('/competitions/{leagueCode}/standings')
   Future<Standings> fetchStandings(@Path('leagueCode') String leagueCode);
 
-  @GET('/competitions/{leagueCode}/scorers')
+  @GET('/competitions/{leagueCode}/scorers?limit=20')
   Future<ScorerResponse> fetchScorers(@Path('leagueCode') String leagueCode);
 
   @GET('/competitions/{leagueCode}/matches')
@@ -28,4 +28,11 @@ abstract class ApiService {
     @Path('leagueCode') String leagueCode,
     @Query('matchday') String matchday,
   );
+
+  @GET('/teams/{teamId}')
+  Future<Team> fetchTeam(@Path('teamId') String leagueId);
+
+
+  @GET('/persons/{playerId}')
+  Future<Player> fetchPlayer(@Path('playerId') String playerId);
 }

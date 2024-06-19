@@ -1,3 +1,4 @@
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +10,7 @@ import 'package:score_zone/provider/league_matches_provider.dart';
 import 'package:score_zone/provider/player_stats_provider.dart';
 import 'package:score_zone/provider/score_opacity_provider.dart';
 import 'package:score_zone/provider/standings_provider.dart';
+import 'package:score_zone/provider/team_info_provider.dart';
 import 'package:score_zone/services/api_service.dart';
 
 void main() async {
@@ -25,6 +27,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => PlayerStatsProvider(apiService)),
         ChangeNotifierProvider(create: (context) => LeagueMatchesProvider(apiService)),
         ChangeNotifierProvider(create: (context) => ScoreOpacityProvider()),
+        ChangeNotifierProvider(create: (context) => TeamInfoProvider(apiService))
       ],
       child: const MyApp(),
     ),

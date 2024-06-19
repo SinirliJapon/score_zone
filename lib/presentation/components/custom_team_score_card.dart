@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:score_zone/constants/colors.dart';
-import 'package:score_zone/constants/styles.dart';
+import 'package:score_zone/utils/colors.dart';
+import 'package:score_zone/utils/styles.dart';
 import 'package:score_zone/model/match.dart';
 import 'package:score_zone/provider/score_opacity_provider.dart';
 

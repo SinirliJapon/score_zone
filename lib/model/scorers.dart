@@ -90,6 +90,7 @@ class Player {
   final String? position;
   final int? shirtNumber;
   final String? lastUpdated;
+  final Team? currentTeam;
 
   Player({
     required this.id,
@@ -102,6 +103,7 @@ class Player {
     this.position,
     this.shirtNumber,
     required this.lastUpdated,
+    required this.currentTeam,
   });
 
   factory Player.fromJson(Map<String, dynamic> json) {
@@ -116,6 +118,7 @@ class Player {
       position: json['position'] as String? ?? 'Unknown',
       shirtNumber: json['shirtNumber'] as int? ?? 0,
       lastUpdated: json['lastUpdated'] as String? ?? 'Unknown',
+      currentTeam: json['currentTeam'] as Team?,
     );
   }
 
