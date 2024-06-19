@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:score_zone/constants/colors.dart';
+import 'package:score_zone/utils/colors.dart';
 import 'package:score_zone/provider/league_matches_provider.dart';
 
 class CustomMatchDayPicker extends StatelessWidget {

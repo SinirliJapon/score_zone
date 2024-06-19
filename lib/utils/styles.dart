@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:score_zone/constants/colors.dart';
+import 'package:score_zone/utils/colors.dart';
 
 //TODO: Refactor all styles
 

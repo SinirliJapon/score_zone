@@ -88,7 +88,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/competitions/${leagueCode}/scorers',
+              '/competitions/${leagueCode}/scorers?limit=20',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -155,6 +155,60 @@ class _ApiService implements ApiService {
               baseUrl,
             ))));
     final value = MatchBaseResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<Team> fetchTeam(String leagueId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result =
+        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Team>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/teams/${leagueId}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = Team.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<Player> fetchPlayer(String playerId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result =
+        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Player>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/persons/${playerId}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = Player.fromJson(_result.data!);
     return value;
   }
 

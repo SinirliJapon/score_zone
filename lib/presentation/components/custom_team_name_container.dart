@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:score_zone/constants/styles.dart';
+import 'package:score_zone/utils/styles.dart';
 
 class CustomTeamNameContainer extends StatelessWidget {
   final String teamTla;

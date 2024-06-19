@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:score_zone/constants/colors.dart';
-import 'package:score_zone/constants/styles.dart';
+import 'package:score_zone/utils/colors.dart';
+import 'package:score_zone/utils/styles.dart';
 import 'package:score_zone/presentation/components/custom_data_row.dart';
 import 'package:score_zone/presentation/screens/standings_screen.dart';
 import 'package:score_zone/provider/player_stats_provider.dart';
@@ -34,34 +34,39 @@ class PlayerStatsScreen extends StatelessWidget {
               backgroundColor: leagueColors[leagueCode]?.withOpacity(0.8) ?? Colors.grey,
               title: LeaugeTitle(leagueCode: leagueCode, competitionName: leagueTitle),
             ),
-            body: DataTable(
-              columnSpacing: screenHeight / 39,
-              headingRowColor: Styles.customDataHeadingRowColor(leagueCode),
-              headingTextStyle: Styles.customHeadingTextStyle(leagueCode),
-              dataTextStyle: Styles.customDataTextStyle(leagueCode),
-              columns: const <DataColumn>[
-                DataColumn(label: Text('POS')),
-                DataColumn(label: Text('NAME')),
-                DataColumn(label: Text('CLUB')),
-                DataColumn(label: Text('A')),
-                DataColumn(label: Text('P')),
-                DataColumn(label: Text('G')),
-              ],
-              rows: leagueScorersTable.map((scorer) {
-                final index = leagueScorersTable.indexOf(scorer) + 1;
-                final teamCrest = scorer.team!.crest.toString();
-                final teamTla = scorer.team!.tla!.toUpperCase();
-                return DataRow(
-                  cells: [
-                    DataCell(Text('$index')),
-                    DataCell(Text(scorer.player!.name!)),
-                    DataCell(CustomDataRow(teamCrest: teamCrest, teamTla: teamTla)),
-                    DataCell(Text('${scorer.assists}')),
-                    DataCell(Text('${scorer.penalties}')),
-                    DataCell(Text('${scorer.goals}', style: Styles.customDataPointTextStyle(leagueCode))),
-                  ],
-                );
-              }).toList(),
+            body: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: DataTable(
+                columnSpacing: screenHeight / 39,
+                headingRowColor: Styles.customDataHeadingRowColor(leagueCode),
+                headingTextStyle: Styles.customHeadingTextStyle(leagueCode),
+                dataTextStyle: Styles.customDataTextStyle(leagueCode),
+                columns: const <DataColumn>[
+                  DataColumn(label: Text('POS')),
+                  DataColumn(label: Text('NAME')),
+                  DataColumn(label: Text('CLUB')),
+                  DataColumn(label: Text('A')),
+                  DataColumn(label: Text('P')),
+                  DataColumn(label: Text('G')),
+                ],
+                rows: leagueScorersTable.map((scorer) {
+                  final index = leagueScorersTable.indexOf(scorer) + 1;
+                  final teamCrest = scorer.team!.crest.toString();
+                  final teamTla = scorer.team!.tla!.toUpperCase();
+                  final teamId = scorer.team!.id.toString();
+                  return DataRow(
+                    cells: [
+                      DataCell(Text('$index')),
+                      DataCell(Text(scorer.player!.name!)),
+                      DataCell(CustomDataRow(
+                          teamCrest: teamCrest, teamTla: teamTla, teamId: teamId, leagueCode: leagueCode)),
+                      DataCell(Text('${scorer.assists}')),
+                      DataCell(Text('${scorer.penalties}')),
+                      DataCell(Text('${scorer.goals}', style: Styles.customDataPointTextStyle(leagueCode))),
+                    ],
+                  );
+                }).toList(),
+              ),
             ),
           );
         }

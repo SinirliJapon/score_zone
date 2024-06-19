@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:score_zone/constants/styles.dart';
+import 'package:score_zone/utils/styles.dart';
 import 'package:score_zone/model/standings.dart';
 import 'package:score_zone/presentation/components/average_text.dart';
 import 'package:score_zone/presentation/components/custom_data_row.dart';
@@ -12,13 +12,14 @@ class LeagueStandings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
-      child: Padding(
-        padding: const EdgeInsets.only(left: 4.0, right: 4.0),
+      child: SizedBox(
+        width: screenWidth,
         child: DataTable(
-          columnSpacing: screenHeight / 42,
+          columnSpacing: 5,
+          showBottomBorder: true,
           headingRowColor: Styles.customDataHeadingRowColor(leagueCode),
           headingTextStyle: Styles.customHeadingTextStyle(leagueCode),
           dataTextStyle: Styles.customDataTextStyle(leagueCode),
@@ -35,10 +36,11 @@ class LeagueStandings extends StatelessWidget {
           rows: standingsTable.map((data) {
             final teamCrest = data.team.crest.toString();
             final teamTla = data.team.tla!.toUpperCase();
+            final teamId = data.team.id.toString();
             return DataRow(
               cells: <DataCell>[
                 DataCell(Text(data.position.toString())),
-                DataCell(CustomDataRow(teamCrest: teamCrest, teamTla: teamTla)),
+                DataCell(CustomDataRow(teamCrest: teamCrest, teamTla: teamTla, teamId: teamId, leagueCode: leagueCode)),
                 DataCell(Text(data.playedGames.toString())),
                 DataCell(Text(data.won.toString())),
                 DataCell(Text(data.draw.toString())),

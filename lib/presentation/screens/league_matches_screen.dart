@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:score_zone/constants/colors.dart';
+import 'package:score_zone/utils/colors.dart';
 import 'package:score_zone/presentation/components/build_image.dart';
 import 'package:score_zone/presentation/components/custom_match_day_picker.dart';
 import 'package:score_zone/presentation/components/custom_team_name_container.dart';

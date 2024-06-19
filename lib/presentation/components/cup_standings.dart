@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:score_zone/constants/colors.dart';
-import 'package:score_zone/constants/styles.dart';
+import 'package:score_zone/utils/colors.dart';
+import 'package:score_zone/utils/styles.dart';
 import 'package:score_zone/model/standings.dart';
 import 'package:score_zone/presentation/components/average_text.dart';
 import 'package:score_zone/presentation/components/build_image.dart';

@@ -1,4 +1,5 @@
 import 'package:score_zone/model/competitions.dart';
+import 'package:score_zone/model/scorers.dart';
 
 class Standings {
   final Filters filters;
@@ -21,9 +22,7 @@ class Standings {
       area: Area.fromJson(json['area'] ?? {}),
       competition: Competition.fromJson(json['competition'] ?? {}),
       season: Season.fromJson(json['season'] ?? {}),
-      standings: (json['standings'] as List<dynamic>? ?? [])
-          .map((e) => StandingsData.fromJson(e))
-          .toList(),
+      standings: (json['standings'] as List<dynamic>? ?? []).map((e) => StandingsData.fromJson(e)).toList(),
     );
   }
 
@@ -142,9 +141,7 @@ class StandingsData {
       stage: json['stage'] as String? ?? 'Unknown',
       type: json['type'] as String? ?? 'Unknown',
       group: json['group'],
-      table: (json['table'] as List<dynamic>? ?? [])
-          .map((e) => TableData.fromJson(e))
-          .toList(),
+      table: (json['table'] as List<dynamic>? ?? []).map((e) => TableData.fromJson(e)).toList(),
     );
   }
 
@@ -220,6 +217,7 @@ class Team {
   final String? shortName;
   final String? tla;
   final String? crest;
+  final List<Player>? squad;
 
   Team({
     required this.id,
@@ -227,6 +225,7 @@ class Team {
     required this.shortName,
     required this.tla,
     required this.crest,
+    this.squad,
   });
 
   factory Team.fromJson(Map<String, dynamic> json) {
@@ -236,6 +235,7 @@ class Team {
       shortName: json['shortName'] as String? ?? 'Unknown',
       tla: json['tla'] as String? ?? 'Unknown',
       crest: json['crest'] as String? ?? 'Unknown',
+      squad: (json['squad'] as List<dynamic>?)?.map((item) => Player.fromJson(item)).toList(),
     );
   }
 
