@@ -100,8 +100,8 @@ class Player {
     required this.dateOfBirth,
     required this.nationality,
     required this.section,
-    this.position,
-    this.shirtNumber,
+    required this.position,
+    required this.shirtNumber,
     required this.lastUpdated,
     required this.currentTeam,
   });
@@ -118,7 +118,7 @@ class Player {
       position: json['position'] as String? ?? 'Unknown',
       shirtNumber: json['shirtNumber'] as int? ?? 0,
       lastUpdated: json['lastUpdated'] as String? ?? 'Unknown',
-      currentTeam: json['currentTeam'] as Team?,
+      currentTeam: Team.fromJson(json['currentTeam'] ?? {}),
     );
   }
 
