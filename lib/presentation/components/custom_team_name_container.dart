@@ -16,7 +16,7 @@ class CustomTeamNameContainer extends StatelessWidget {
     return SizedBox(
       width: 50,
       height: 50,
-      child: Center(child: Text(teamTla, style: Styles.customMatchTeamTextStyle(leagueCode))),
+      child: Center(child: Text(teamTla, style: Styles.matchTeamTextStyle(leagueCode))),
     );
   }
 }

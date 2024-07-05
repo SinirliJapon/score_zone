@@ -10,7 +10,7 @@ class BuildImage extends StatelessWidget {
   BuildImage({
     Key? key,
     required this.url,
-    this.width = 35,
+    required this.width,
   }) : super(key: key);
 
   @override

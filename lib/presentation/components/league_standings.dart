@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:score_zone/utils/colors.dart';
 import 'package:score_zone/utils/styles.dart';
 import 'package:score_zone/model/standings.dart';
 import 'package:score_zone/presentation/components/average_text.dart';
@@ -6,9 +7,9 @@ import 'package:score_zone/presentation/components/custom_data_row.dart';
 
 class LeagueStandings extends StatelessWidget {
   final List<TableData> standingsTable;
-  final String leagueCode;
+  final String leagueName;
 
-  const LeagueStandings(this.standingsTable, this.leagueCode, {Key? key}) : super(key: key);
+  const LeagueStandings(this.standingsTable, this.leagueName, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +19,19 @@ class LeagueStandings extends StatelessWidget {
       child: SizedBox(
         width: screenWidth,
         child: DataTable(
-          columnSpacing: 5,
+          horizontalMargin: 20,
+          columnSpacing: 10,
+          border: const TableBorder(
+            top: BorderSide(color: premierPrimary, width: 0.5),
+            bottom: BorderSide(color: premierPrimary, width: 0.5),
+            left: BorderSide(color: premierPrimary, width: 0.5),
+            right: BorderSide(color: premierPrimary, width: 0.5),
+          ),
           showBottomBorder: true,
-          headingRowColor: Styles.customDataHeadingRowColor(leagueCode),
-          headingTextStyle: Styles.customHeadingTextStyle(leagueCode),
-          dataTextStyle: Styles.customDataTextStyle(leagueCode),
+          dataRowColor: Styles.dataRowColor(),
+          dataTextStyle: Styles.dataTextStyle(),
+          headingRowColor: Styles.headingDataRowColor(),
+          headingTextStyle: Styles.headingTextStyle(),
           columns: const <DataColumn>[
             DataColumn(label: Text('POS')),
             DataColumn(label: Text('CLUB')),
@@ -40,13 +49,13 @@ class LeagueStandings extends StatelessWidget {
             return DataRow(
               cells: <DataCell>[
                 DataCell(Text(data.position.toString())),
-                DataCell(CustomDataRow(teamCrest: teamCrest, teamTla: teamTla, teamId: teamId, leagueCode: leagueCode)),
+                DataCell(CustomDataRow(teamCrest: teamCrest, teamTla: teamTla, teamId: teamId, leagueName: leagueName)),
                 DataCell(Text(data.playedGames.toString())),
                 DataCell(Text(data.won.toString())),
                 DataCell(Text(data.draw.toString())),
                 DataCell(Text(data.lost.toString())),
                 DataCell(AverageText(goalDifference: data.goalDifference)),
-                DataCell(Text(data.points.toString(), style: Styles.customDataPointTextStyle(leagueCode))),
+                DataCell(Text(data.points.toString(), style: const TextStyle(fontSize: 16))),
               ],
             );
           }).toList(),

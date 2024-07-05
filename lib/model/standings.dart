@@ -211,30 +211,108 @@ class TableData {
   }
 }
 
+class Contract {
+  final String? start;
+  final String? until;
+
+  Contract({required this.start, required this.until});
+
+  factory Contract.fromJson(Map<String, dynamic> json) {
+    return Contract(
+      start: json['start'] as String? ?? 'Unknown',
+      until: json['until'] as String? ?? 'Unknown',
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'start': start,
+      'until': until,
+    };
+  }
+}
+
+class Coach {
+  final int? id;
+  final String? name;
+  final String? dateOfBirth;
+  final String? nationality;
+  final Contract contract;
+
+  Coach({
+    required this.id,
+    required this.name,
+    required this.dateOfBirth,
+    required this.nationality,
+    required this.contract,
+  });
+
+  factory Coach.fromJson(Map<String, dynamic> json) {
+    return Coach(
+      id: json['id'] as int? ?? 0,
+      name: json['name']as String? ?? 'Unknown',
+      dateOfBirth: json['dateOfBirth']as String? ?? 'Unknown',
+      nationality: json['nationality']as String? ?? 'Unknown',
+      contract: Contract.fromJson(json['contract'] as Map<String, dynamic>? ?? {}),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'dateOfBirth': dateOfBirth,
+      'nationality': nationality,
+      'contract': contract.toJson(),
+    };
+  }
+}
+
 class Team {
+  final Area area;
   final int? id;
   final String? name;
   final String? shortName;
   final String? tla;
   final String? crest;
+  final String? website;
+  final int? founded;
+  final String? clubColors;
+  final String? venue;
+  final Competition? runningCompetitions;
+  final Coach? coach;
   final List<Player>? squad;
 
   Team({
+    required this.area,
     required this.id,
     required this.name,
     required this.shortName,
     required this.tla,
     required this.crest,
+    required this.website,
+    required this.clubColors,
+    required this.founded,
+    required this.venue,
+    required this.runningCompetitions,
+    required this.coach,
     this.squad,
   });
 
   factory Team.fromJson(Map<String, dynamic> json) {
     return Team(
+      area: Area.fromJson(json['area'] as Map<String, dynamic>? ?? {}),
       id: json['id'] as int? ?? 0,
       name: json['name'] as String? ?? 'Unknown',
       shortName: json['shortName'] as String? ?? 'Unknown',
       tla: json['tla'] as String? ?? 'Unknown',
       crest: json['crest'] as String? ?? 'Unknown',
+      website: json['website'] as String?,
+      founded: json['founded'] as int? ?? 0,
+      clubColors: json['clubColors'] as String? ?? 'Unknown',
+      venue: json['venue'] as String? ?? 'Unknown',
+      runningCompetitions: Competition.fromJson(json['competitions'] as Map<String, dynamic>? ?? {}),
+      coach: Coach.fromJson(json['coach'] as Map<String, dynamic>? ?? {}),
       squad: (json['squad'] as List<dynamic>?)?.map((item) => Player.fromJson(item)).toList(),
     );
   }

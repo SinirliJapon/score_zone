@@ -1,20 +1,32 @@
-abstract class Functions {
-  static String calculateAge(String? dateOfBirth) {
-    String playerAge = "";
-    
-      try {
-        DateTime birthDate = DateTime.parse(dateOfBirth!);
-        DateTime today = DateTime.now();
-        int age = today.year - birthDate.year;
-        if (today.month < birthDate.month || (today.month == birthDate.month && today.day < birthDate.day)) {
-          age--;
-        }
-        playerAge = age.toString();
-      } catch (e) {
-        playerAge = "Unkown";
-      }
+import 'package:intl/intl.dart';
 
-    return playerAge;
+abstract class Functions {
+static int calculateAge(String? dateOfBirth) {
+  int playerAge = 0;
+
+  if (dateOfBirth != null && dateOfBirth.toLowerCase() != 'unknown') {
+    try {
+      DateTime birthDate = DateTime.parse(dateOfBirth);
+      DateTime today = DateTime.now();
+      int age = today.year - birthDate.year;
+      if (today.month < birthDate.month || (today.month == birthDate.month && today.day < birthDate.day)) {
+        age--;
+      }
+      playerAge = age;
+    } catch (e) {
+      playerAge = 0;
+    }
+  } else {
+    playerAge = 0;
+  }
+
+  return playerAge;
+}
+
+
+  static String formatDate(String date) {
+    final DateTime parsedDate = DateFormat('yyyy-MM').parse(date);
+    return DateFormat('MMMM yyyy').format(parsedDate);
   }
 
   static String shortenName(String name) {

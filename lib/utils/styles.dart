@@ -1,31 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:score_zone/utils/colors.dart';
-
 //TODO: Refactor all styles
 
 abstract class Styles {
-  static MaterialStateProperty<Color?>? customDataHeadingRowColor(String leagueCode) =>
-      MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) => leagueTextColors[leagueCode]);
+  static WidgetStateProperty<Color?>? dataRowColor() =>
+      WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) => Colors.white);
 
-  static TextStyle customDataTextStyle(String leagueCode) =>
-      TextStyle(color: leagueTextColors[leagueCode], fontWeight: FontWeight.w900);
+  static TextStyle dataTextStyle() =>
+      const TextStyle(color: premierPrimary, fontWeight: FontWeight.w900);
 
-  static TextStyle customDataPointTextStyle(String leagueCode) =>
-      TextStyle(color: leagueTextColors[leagueCode], fontWeight: FontWeight.w900, fontSize: 16);    
+  static TextStyle dataPointTextStyle() =>
+      const TextStyle(color: premierPrimary, fontWeight: FontWeight.w900, fontSize: 16);
 
-  static TextStyle customHeadingTextStyle(String leagueCode) =>
-      TextStyle(fontWeight: FontWeight.w900, fontSize: 14, color: leagueColors[leagueCode]);
+  static WidgetStateProperty<Color?>? headingDataRowColor() =>
+      WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) => premierPrimary);    
 
-  static TextStyle customMatchTeamTextStyle(String leagueCode) =>
-      TextStyle(fontWeight: FontWeight.w900, fontSize: 18, color: leagueColors[leagueCode]);    
+  static TextStyle headingTextStyle() =>
+      const TextStyle(fontWeight: FontWeight.w900, fontSize: 14, color: Colors.white);
 
-  static TextStyle customMatchResultTextStyle(String leagueCode) =>
+  static TextStyle matchTeamTextStyle(String leagueCode) =>
+      TextStyle(fontWeight: FontWeight.w900, fontSize: 18, color: leagueColors[leagueCode]);
+
+  static TextStyle matchResultTextStyle(String leagueCode) =>
       TextStyle(color: leagueTextColors[leagueCode], fontSize: 18, fontWeight: FontWeight.w900);
 
-  static TextStyle customLiveMatchResultTextStyle(String leagueCode) =>
-      const TextStyle(color: Colors.red, fontSize: 18, fontWeight: FontWeight.w900);   
+  static TextStyle liveMatchResultTextStyle(String leagueCode) =>
+      const TextStyle(color: Colors.red, fontSize: 18, fontWeight: FontWeight.w900);
 
-  static TextStyle customNotFinishedMatchResultTextStyle(String leagueCode) =>
-      TextStyle(color: leagueColors[leagueCode], fontSize: 18, fontWeight: FontWeight.w900);        
-
+  static TextStyle notFinishedMatchResultTextStyle(String leagueCode) =>
+      TextStyle(color: leagueColors[leagueCode], fontSize: 18, fontWeight: FontWeight.w900);
 }
