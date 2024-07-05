@@ -27,20 +27,19 @@ class StandingsScreen extends StatelessWidget {
         final leagueStandingsTable = value.standings.first.table;
         final cupStandings = value.standings;
         return Scaffold(
-          backgroundColor: leagueColors[leagueCode] ?? Colors.grey,
+          backgroundColor: premierBackground,
           appBar: AppBar(
-            foregroundColor: leagueTextColors[leagueCode] ?? Colors.black,
-            backgroundColor: leagueColors[leagueCode]?.withOpacity(0.8) ?? Colors.grey,
+            foregroundColor: premierSecondary,
+            backgroundColor: premierPrimary,
+            title: LeaugeTitle(competitionName: value.competitionName),
             actions: [
               PlayerStatsScreenButton(leagueCode: leagueCode, leagueTitle: value.competitionName),
               LeagueMatchesScreenButton(leagueCode: leagueCode, currentMatchDay: value.currentMatchDay.toString(),)
             ],
-            // TODO: This is for temporary
-            title: LeaugeTitle(leagueCode: leagueCode, competitionName: value.competitionName),
           ),
           body: value.competitionType.toString() == 'LEAGUE'
-              ? LeagueStandings(leagueStandingsTable, leagueCode)
-              : CupStandings(cupStandings, leagueCode: leagueCode),
+              ? LeagueStandings(leagueStandingsTable, value.competitionName)
+              : CupStandings(cupStandings),
         );
       }
     });
@@ -48,13 +47,8 @@ class StandingsScreen extends StatelessWidget {
 }
 
 class LeaugeTitle extends StatelessWidget {
-  const LeaugeTitle({
-    super.key,
-    required this.leagueCode,
-    required this.competitionName,
-  });
+  const LeaugeTitle({super.key, required this.competitionName});
 
-  final String leagueCode;
   final String competitionName;
 
   @override
@@ -62,8 +56,8 @@ class LeaugeTitle extends StatelessWidget {
     return Center(
       child: Text(
         competitionName,
-        style: TextStyle(
-          color: leagueTextColors[leagueCode] ?? Colors.black,
+        style: const TextStyle(
+          color: premierSecondary,
           fontWeight: FontWeight.w700,
         ),
       ),
@@ -94,7 +88,8 @@ class PlayerStatsScreenButton extends StatelessWidget {
 class LeagueMatchesScreenButton extends StatelessWidget {
   const LeagueMatchesScreenButton({
     super.key,
-    required this.leagueCode, required this.currentMatchDay,
+    required this.leagueCode,
+    required this.currentMatchDay,
   });
 
   final String currentMatchDay;

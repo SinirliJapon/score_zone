@@ -32,15 +32,15 @@ class PlayerStatsScreen extends StatelessWidget {
             appBar: AppBar(
               foregroundColor: leagueTextColors[leagueCode] ?? Colors.black,
               backgroundColor: leagueColors[leagueCode]?.withOpacity(0.8) ?? Colors.grey,
-              title: LeaugeTitle(leagueCode: leagueCode, competitionName: leagueTitle),
+              title: LeaugeTitle(competitionName: leagueTitle),
             ),
             body: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: DataTable(
                 columnSpacing: screenHeight / 39,
-                headingRowColor: Styles.customDataHeadingRowColor(leagueCode),
-                headingTextStyle: Styles.customHeadingTextStyle(leagueCode),
-                dataTextStyle: Styles.customDataTextStyle(leagueCode),
+                headingRowColor: Styles.dataRowColor(),
+                headingTextStyle: Styles.headingTextStyle(),
+                dataTextStyle: Styles.dataTextStyle(),
                 columns: const <DataColumn>[
                   DataColumn(label: Text('POS')),
                   DataColumn(label: Text('NAME')),
@@ -59,10 +59,10 @@ class PlayerStatsScreen extends StatelessWidget {
                       DataCell(Text('$index')),
                       DataCell(Text(scorer.player!.name!)),
                       DataCell(CustomDataRow(
-                          teamCrest: teamCrest, teamTla: teamTla, teamId: teamId, leagueCode: leagueCode)),
+                          teamCrest: teamCrest, teamTla: teamTla, teamId: teamId, leagueName: leagueCode)),
                       DataCell(Text('${scorer.assists}')),
                       DataCell(Text('${scorer.penalties}')),
-                      DataCell(Text('${scorer.goals}', style: Styles.customDataPointTextStyle(leagueCode))),
+                      DataCell(Text('${scorer.goals}', style: Styles.dataPointTextStyle())),
                     ],
                   );
                 }).toList(),

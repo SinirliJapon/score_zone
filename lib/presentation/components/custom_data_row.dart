@@ -6,13 +6,13 @@ import 'package:score_zone/presentation/components/build_image.dart';
 class CustomDataRow extends StatelessWidget {
   const CustomDataRow({
     super.key,
-    required this.leagueCode,
+    required this.leagueName,
     required this.teamId,
     required this.teamCrest,
     required this.teamTla,
   });
 
-  final String leagueCode;
+  final String leagueName;
   final String teamId;
   final String teamCrest;
   final String teamTla;
@@ -20,11 +20,11 @@ class CustomDataRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => AutoRouter.of(context).push(TeamInfoRoute(teamId: teamId, leagueCode: leagueCode)),
+      onTap: () => AutoRouter.of(context).push(TeamInfoRoute(teamId: teamId, leagueCode: leagueName)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          BuildImage(url: teamCrest),
+          BuildImage(url: teamCrest, width: 35),
           const SizedBox(width: 5),
           Text(teamTla, style: const TextStyle(fontWeight: FontWeight.w900)),
         ],

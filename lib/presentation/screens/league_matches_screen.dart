@@ -61,9 +61,9 @@ class LeagueMatchesScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             CustomTeamNameContainer(teamTla: match.homeTeam!.tla.toString(), leagueCode: leagueCode),
-                            BuildImage(url: match.homeTeam!.crest.toString()),
+                            BuildImage(url: match.homeTeam!.crest.toString(), width: 35),
                             CustomTeamScoreCard(leagueCode: leagueCode, match: match),
-                            BuildImage(url: match.awayTeam!.crest.toString()),
+                            BuildImage(url: match.awayTeam!.crest.toString(), width: 35),
                             CustomTeamNameContainer(teamTla: match.awayTeam!.tla.toString(), leagueCode: leagueCode),
                           ],
                         ),

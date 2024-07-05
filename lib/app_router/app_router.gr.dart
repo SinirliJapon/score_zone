@@ -79,7 +79,7 @@ abstract class $AppRouter extends _i7.RootStackRouter {
         routeData: routeData,
         child: _i6.TeamInfoScreen(
           key: args.key,
-          leagueCode: args.leagueCode,
+          leagueName: args.leagueCode,
           teamId: args.teamId,
         ),
       );

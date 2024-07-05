@@ -6,6 +6,7 @@ const laLigaPoint = Color(0xFF1B8DCC);
 
 const premierPrimary = Color(0xFF38003C);
 const premierSecondary = Color(0xFFFFFFFF);
+const premierBackground = Color(0xFFD0D3D4);
 const premierPoint = Color(0xFFFDB927);
 
 const bundesligaPrimary = Color(0xFFD20515);

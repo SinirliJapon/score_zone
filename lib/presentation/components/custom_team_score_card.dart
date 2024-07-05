@@ -27,7 +27,7 @@ class CustomTeamScoreCard extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Text(
             '${match.score?.fullTime?['home'] ?? 0}  -  ${match.score?.fullTime?['away'] ?? 0}',
-            style: Styles.customMatchResultTextStyle(leagueCode),
+            style: Styles.matchResultTextStyle(leagueCode),
           ),
         ),
       );
@@ -44,7 +44,7 @@ class CustomTeamScoreCard extends StatelessWidget {
             duration: const Duration(seconds: 1),
             child: Text(
               '${match.score?.fullTime?['home'] ?? 0}  -  ${match.score?.fullTime?['away'] ?? 0}',
-              style: Styles.customLiveMatchResultTextStyle(leagueCode),
+              style: Styles.liveMatchResultTextStyle(leagueCode),
             ),
           ),
         ),
@@ -60,16 +60,16 @@ class CustomTeamScoreCard extends StatelessWidget {
           child: isPostponed
               ? Text(
                   ' PPD ',
-                  style: Styles.customNotFinishedMatchResultTextStyle(leagueCode),
+                  style: Styles.notFinishedMatchResultTextStyle(leagueCode),
                 )
               : match.utcDate == null
                   ? Text(
                       ' TBD ',
-                      style: Styles.customNotFinishedMatchResultTextStyle(leagueCode),
+                      style: Styles.notFinishedMatchResultTextStyle(leagueCode),
                     )
                   : Text(
                       DateFormat('HH:mm').format(match.utcDate!),
-                      style: Styles.customNotFinishedMatchResultTextStyle(leagueCode),
+                      style: Styles.notFinishedMatchResultTextStyle(leagueCode),
                     ),
         ),
       );

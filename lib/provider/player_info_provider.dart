@@ -17,7 +17,6 @@ class PlayerInfoProvider extends ChangeNotifier {
     notifyListeners();
     final playerResponse = await _apiService.fetchPlayer(leagueCode);
     try {
-      
       _player = playerResponse;
       errorMessage = null;
     } catch (e) {
