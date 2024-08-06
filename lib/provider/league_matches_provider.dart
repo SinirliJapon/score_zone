@@ -7,19 +7,19 @@ class LeagueMatchesProvider extends ChangeNotifier {
 
   LeagueMatchesProvider(this._apiService);
 
-  bool isLoading = false;
+  bool _isLoading = false;
   int _desiredMatchDay = 1;
   int _currentMatchDay = 1;
   int _totalMatchDay = 46;
-  
+
+  bool get isLoading => _isLoading;
   List<Match> _desiredMatches = [];
   List<Match> get desiredMatches => _desiredMatches;
-
   int get desiredMatchDay => _desiredMatchDay;
   int get totalMatchDay => _totalMatchDay;
 
   Future<void> fetchMatchesForCurrentMatchday(String leagueCode, String desiredMatchDay) async {
-    isLoading = true;
+    _isLoading = true;
     notifyListeners();
     // All matches called and filtered after
     try {
@@ -35,7 +35,7 @@ class LeagueMatchesProvider extends ChangeNotifier {
     } catch (e) {
       throw Exception('Failed to fetch league matches: $e');
     } finally {
-      isLoading = false;
+      _isLoading = false;
       notifyListeners();
     }
   }
