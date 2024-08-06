@@ -53,6 +53,8 @@ class TeamInfoScreen extends StatelessWidget {
                   const SizedBox(height: 20),
                   TeamExpansionTile(
                     title: 'Team Info',
+                    icon: Icons.info,
+                    isOpen: true,
                     children: [
                       TeamInfoRow(icon: Icons.area_chart_outlined, info: 'Area', data: team.area.name!),
                       TeamInfoRow(icon: Icons.sports_soccer_outlined, info: 'League', data: leagueName),
@@ -65,6 +67,8 @@ class TeamInfoScreen extends StatelessWidget {
                   ),
                   TeamExpansionTile(
                     title: 'Coach',
+                    icon: Icons.sports,
+                    isOpen: true,
                     children: [
                       TeamInfoRow(icon: Icons.sports, info: 'Name', data: coach!.name!),
                       TeamInfoRow(icon: Icons.alarm_add, info: 'Age', data: value.coachAge!),
@@ -83,6 +87,8 @@ class TeamInfoScreen extends StatelessWidget {
                   ),
                   TeamExpansionTile(
                     title: 'Squad',
+                    icon: Icons.people,
+                    isOpen: true,
                     children: [
                       TeamSquad(leagueCode: leagueName, teamSquad: value.teamSquad!),
                     ],
@@ -118,16 +124,21 @@ class TeamInfoRow extends StatelessWidget {
 }
 
 class TeamExpansionTile extends StatelessWidget {
+  final bool isOpen;
+  final IconData icon;
   final String title;
   final List<Widget> children;
 
-  const TeamExpansionTile({super.key, required this.title, required this.children});
+  const TeamExpansionTile(
+      {super.key, required this.isOpen, required this.icon, required this.title, required this.children});
 
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      initiallyExpanded: true,
+      initiallyExpanded: isOpen,
+      leading: Icon(icon),
       collapsedBackgroundColor: premierPrimary,
+      iconColor: premierPrimary,
       collapsedIconColor: premierSecondary,
       collapsedTextColor: premierSecondary,
       backgroundColor: premierSecondary,

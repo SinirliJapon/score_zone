@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// TODO: Refactor all colors
+
 const laLigaPrimary = Color(0xFFEE8707);
 const laLigaSecondary = Color(0xFF000000);
 const laLigaPoint = Color(0xFF1B8DCC);

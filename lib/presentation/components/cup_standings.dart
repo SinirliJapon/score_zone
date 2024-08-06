@@ -21,7 +21,7 @@ class CupStandings extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: CarouselSlider(
               options: CarouselOptions(
-                aspectRatio: 1 / 2.5,
+                aspectRatio: 1 / 1,
                 height: screenHeight,
                 viewportFraction: 0.5,
                 scrollDirection: Axis.vertical,

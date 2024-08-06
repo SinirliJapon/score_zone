@@ -19,14 +19,18 @@ class BuildImage extends StatelessWidget {
   }
 
   Widget _buildSvgImage() {
-    
     return SizedBox(
       height: width,
       width: width,
       child: ScalableImageWidget.fromSISource(
         cache: cache,
+        isComplex: true,
         fit: BoxFit.cover,
-        si: ScalableImageSource.fromSvgHttpUrl(Uri.parse(url)),
+        si: ScalableImageSource.fromSvgHttpUrl(
+          Uri.parse(url),
+          compact: true,
+          bigFloats: true,
+        ),
       ),
     );
   }

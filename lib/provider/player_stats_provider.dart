@@ -4,18 +4,18 @@ import 'package:score_zone/services/api_service.dart';
 
 class PlayerStatsProvider extends ChangeNotifier {
   final ApiService _apiService;
-  late bool isLoading = false;
+  bool _isLoading = false;
   late String? errorMessage;
 
+  bool get isLoading => _isLoading;
   List<Scorer> _scorerTable = [];
   List<Scorer> get scorers => _scorerTable;
 
   PlayerStatsProvider(this._apiService);
 
   Future<void> fetchScorers(String leagueCode) async {
-    isLoading = true;
+    _isLoading = true;
     notifyListeners();
-
     final response = await _apiService.fetchScorers(leagueCode);
     try {
       _scorerTable = response.scorers;
@@ -23,7 +23,7 @@ class PlayerStatsProvider extends ChangeNotifier {
     } catch (e) {
       errorMessage = 'Failed to fetch scorers: $e';
     } finally {
-      isLoading = false;
+      _isLoading = false;
       notifyListeners();
     }
   }
