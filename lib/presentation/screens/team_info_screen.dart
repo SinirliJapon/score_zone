@@ -2,10 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:score_zone/presentation/components/build_image.dart';
+import 'package:score_zone/presentation/components/custom_expansion_tile.dart';
+import 'package:score_zone/presentation/components/custom_info_row.dart';
 import 'package:score_zone/presentation/components/team_squad.dart';
 import 'package:score_zone/utils/colors.dart';
 import 'package:score_zone/provider/team_info_provider.dart';
-import 'package:score_zone/utils/functions.dart';
+import 'package:score_zone/utils/icons.dart';
 
 @RoutePage()
 class TeamInfoScreen extends StatelessWidget {
@@ -51,41 +53,33 @@ class TeamInfoScreen extends StatelessWidget {
                   const SizedBox(height: 20),
                   Center(child: BuildImage(url: team.crest!, width: 200)),
                   const SizedBox(height: 20),
-                  TeamExpansionTile(
+                  CustomExpansionTile(
                     title: 'Team Info',
                     icon: Icons.info,
                     isOpen: true,
                     children: [
-                      TeamInfoRow(icon: Icons.area_chart_outlined, info: 'Area', data: team.area.name!),
-                      TeamInfoRow(icon: Icons.sports_soccer_outlined, info: 'League', data: leagueName),
-                      TeamInfoRow(icon: Icons.flag, info: 'Founded', data: team.founded.toString()),
-                      TeamInfoRow(icon: Icons.stadium, info: 'Stadium', data: team.venue!),
-                      TeamInfoRow(icon: Icons.groups, info: 'Squad Size', data: value.squadSize.toString()),
-                      TeamInfoRow(icon: Icons.functions, info: 'Average Age', data: value.averageAge!),
-                      TeamInfoRow(icon: Icons.palette, info: 'Club Colors', data: team.clubColors!),
+                      CustomInfoRow(icon: Icons.area_chart_outlined, info: 'Area', data: team.area.name!),
+                      CustomInfoRow(icon: Icons.sports_soccer_outlined, info: 'League', data: leagueName),
+                      CustomInfoRow(icon: Icons.flag, info: 'Founded', data: team.founded.toString()),
+                      CustomInfoRow(icon: Icons.stadium, info: 'Stadium', data: team.venue!),
+                      CustomInfoRow(icon: Icons.groups, info: 'Squad Size', data: value.squadSize.toString()),
+                      CustomInfoRow(icon: Icons.functions, info: 'Average Age', data: value.averageAge!),
+                      CustomInfoRow(icon: Icons.palette, info: 'Club Colors', data: team.clubColors!),
                     ],
                   ),
-                  TeamExpansionTile(
+                  CustomExpansionTile(
                     title: 'Coach',
                     icon: Icons.sports,
                     isOpen: true,
                     children: [
-                      TeamInfoRow(icon: Icons.sports, info: 'Name', data: coach!.name!),
-                      TeamInfoRow(icon: Icons.alarm_add, info: 'Age', data: value.coachAge!),
-                      TeamInfoRow(icon: Icons.location_on, info: 'Nationality', data: coach.nationality!),
-                      TeamInfoRow(
-                        icon: Icons.play_circle_fill_outlined,
-                        info: 'Contract Start',
-                        data: Functions.formatDate(coach.contract.start!),
-                      ),
-                      TeamInfoRow(
-                        icon: Icons.pause_circle_outlined,
-                        info: 'Contract Until',
-                        data: Functions.formatDate(coach.contract.until!),
-                      ),
+                      CustomInfoRow(icon: Icons.sports, info: 'Name', data: coach!.name!),
+                      CustomInfoRow(icon: Icons.alarm_add, info: 'Age', data: value.coachAge!),
+                      CustomInfoRow(icon: Icons.location_on, info: 'Nationality', data: coach.nationality!),
+                      CustomInfoRow(icon: contractStart, info: 'Contract Start', data: value.coachStart!),
+                      CustomInfoRow(icon: contractUntil, info: 'Contract Until', data: value.coachUntil!),
                     ],
                   ),
-                  TeamExpansionTile(
+                  CustomExpansionTile(
                     title: 'Squad',
                     icon: Icons.people,
                     isOpen: true,
@@ -99,51 +93,6 @@ class TeamInfoScreen extends StatelessWidget {
           );
         }
       },
-    );
-  }
-}
-
-class TeamInfoRow extends StatelessWidget {
-  final IconData icon;
-  final String info;
-  final String data;
-
-  const TeamInfoRow({super.key, required this.icon, required this.info, required this.data});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: Icon(icon),
-      title: Text(info),
-      trailing: Text(data, style: const TextStyle(fontSize: 16)),
-      iconColor: premierPrimary,
-      textColor: premierPrimary,
-      tileColor: premierSecondary,
-    );
-  }
-}
-
-class TeamExpansionTile extends StatelessWidget {
-  final bool isOpen;
-  final IconData icon;
-  final String title;
-  final List<Widget> children;
-
-  const TeamExpansionTile(
-      {super.key, required this.isOpen, required this.icon, required this.title, required this.children});
-
-  @override
-  Widget build(BuildContext context) {
-    return ExpansionTile(
-      initiallyExpanded: isOpen,
-      leading: Icon(icon),
-      collapsedBackgroundColor: premierPrimary,
-      iconColor: premierPrimary,
-      collapsedIconColor: premierSecondary,
-      collapsedTextColor: premierSecondary,
-      backgroundColor: premierSecondary,
-      title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-      children: children,
     );
   }
 }
