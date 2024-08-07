@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:score_zone/app_router/app_router.gr.dart';
 import 'package:score_zone/presentation/components/build_image.dart';
-import 'package:score_zone/presentation/screens/team_info_screen.dart';
+import 'package:score_zone/presentation/components/custom_expansion_tile.dart';
 import 'package:score_zone/utils/colors.dart';
 import 'package:score_zone/presentation/components/cup_standings.dart';
 import 'package:score_zone/presentation/components/league_standings.dart';
@@ -65,7 +65,7 @@ class LeagueView extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            TeamExpansionTile(
+            CustomExpansionTile(
               title: 'Competition Info',
               icon: Icons.info,
               isOpen: false,
@@ -102,7 +102,7 @@ class LeagueView extends StatelessWidget {
                 PlayerStatsRoute(leagueCode: value.competitionCode!, leagueTitle: value.competitionName!),
               ),
             ),
-            TeamExpansionTile(
+            CustomExpansionTile(
               title: 'Standings',
               icon: Icons.format_list_bulleted,
               isOpen: true,
@@ -149,7 +149,7 @@ class CupView extends StatelessWidget {
                   CupStandings(cupStandings),
                   Column(
                     children: [
-                      TeamExpansionTile(
+                      CustomExpansionTile(
                         title: 'Competition Info',
                         icon: Icons.info,
                         isOpen: false,

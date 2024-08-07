@@ -24,8 +24,12 @@ abstract class Functions {
   }
 
   static String formatDate(String date) {
-    final DateTime parsedDate = DateFormat('yyyy-MM').parse(date);
-    return DateFormat('MMMM yyyy').format(parsedDate);
+    if (date == "Unknown") {
+      return "Unknown";
+    } else {
+      final DateTime parsedDate = DateFormat('yyyy-MM').parse(date);
+      return DateFormat('MMMM yyyy').format(parsedDate);
+    }
   }
 
   static String formatLeagueDate(String date) {

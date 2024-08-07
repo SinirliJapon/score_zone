@@ -282,6 +282,7 @@ class Team {
   final Competition? runningCompetitions;
   final Coach? coach;
   final List<Player>? squad;
+  final Contract? contract;
 
   Team({
     required this.area,
@@ -297,6 +298,7 @@ class Team {
     required this.runningCompetitions,
     required this.coach,
     this.squad,
+    required this.contract,
   });
 
   factory Team.fromJson(Map<String, dynamic> json) {
@@ -314,6 +316,7 @@ class Team {
       runningCompetitions: Competition.fromJson(json['competitions'] as Map<String, dynamic>? ?? {}),
       coach: Coach.fromJson(json['coach'] as Map<String, dynamic>? ?? {}),
       squad: (json['squad'] as List<dynamic>?)?.map((item) => Player.fromJson(item)).toList(),
+      contract: Contract.fromJson(json['contract'] as Map<String, dynamic>? ?? {}),
     );
   }
 

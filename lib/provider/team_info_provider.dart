@@ -14,11 +14,15 @@ class TeamInfoProvider extends ChangeNotifier {
   String? _averageAge;
   String? errorMessage;
   String? _coachAge;
+  String? _coachStart;
+  String? _coachUntil;
   List<Player>? _teamSquad = [];
 
   int? get squadSize => _squadSize;
   String? get averageAge => _averageAge;
   String? get coachAge => _coachAge;
+  String? get coachStart => _coachStart;
+  String? get coachUntil => _coachUntil;
   Team? get team => _team;
   Coach? get coach => _coach;
   List<Player>? get teamSquad => _teamSquad;
@@ -41,6 +45,8 @@ class TeamInfoProvider extends ChangeNotifier {
         double averageAgeValue = ages.reduce((a, b) => a + b) / _squadSize!;
         _averageAge = averageAgeValue.toStringAsFixed(1);
         _coachAge = Functions.calculateAge(_coach!.dateOfBirth).toString();
+        _coachStart = Functions.formatDate(_coach!.contract.start!);
+        _coachUntil = Functions.formatDate(_coach!.contract.until!);
         errorMessage = null;
       }
     } on DioException catch (e) {

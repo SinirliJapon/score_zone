@@ -90,7 +90,7 @@ class Player {
   final String? position;
   final int? shirtNumber;
   final String? lastUpdated;
-  final Team? currentTeam;
+  final Team currentTeam;
 
   Player({
     required this.id,
