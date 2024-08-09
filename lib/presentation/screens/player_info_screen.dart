@@ -32,10 +32,10 @@ class PlayerInfoScreen extends StatelessWidget {
         final player = value.player!;
         final team = value.player!.currentTeam;
         return Scaffold(
-          backgroundColor: premierSecondary,
+          backgroundColor: primaryText,
           appBar: AppBar(
-            backgroundColor: premierPrimary,
-            foregroundColor: premierSecondary,
+            backgroundColor: teamInfoScreenColor,
+            foregroundColor: primaryText,
             title: Text(player.name!),
             actions: [
               Padding(
@@ -52,6 +52,8 @@ class PlayerInfoScreen extends StatelessWidget {
                   title: 'Player Info',
                   icon: Icons.sports_soccer,
                   isOpen: true,
+                  primaryColor: teamInfoScreenColor,
+                  secondaryColor: primaryText,
                   children: [
                     CustomInfoRow(icon: Icons.flag, info: 'Player Team', data: player.currentTeam.name!),
                     CustomInfoRow(icon: Icons.numbers, info: 'Shirt Number', data: player.shirtNumber.toString()),

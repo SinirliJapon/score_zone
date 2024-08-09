@@ -22,12 +22,12 @@ class CustomTeamScoreCard extends StatelessWidget {
     if (match.status == "FINISHED") {
       return Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
-        color: leagueColors[leagueCode]?.withOpacity(0.8) ?? Colors.grey,
+        color: primaryText,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
             '${match.score?.fullTime?['home'] ?? 0}  -  ${match.score?.fullTime?['away'] ?? 0}',
-            style: Styles.matchResultTextStyle(leagueCode),
+            style: Styles.matchResultTextStyle(),
           ),
         ),
       );
@@ -35,7 +35,7 @@ class CustomTeamScoreCard extends StatelessWidget {
       return Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(6.0),
-          side: BorderSide(color: leagueColors[leagueCode]?.withOpacity(0.8) ?? Colors.grey),
+          side: const BorderSide(color: primaryText),
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -44,7 +44,7 @@ class CustomTeamScoreCard extends StatelessWidget {
             duration: const Duration(seconds: 1),
             child: Text(
               '${match.score?.fullTime?['home'] ?? 0}  -  ${match.score?.fullTime?['away'] ?? 0}',
-              style: Styles.liveMatchResultTextStyle(leagueCode),
+              style: Styles.liveMatchResultTextStyle(),
             ),
           ),
         ),
@@ -53,23 +53,23 @@ class CustomTeamScoreCard extends StatelessWidget {
       return Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(6.0),
-          side: BorderSide(color: leagueColors[leagueCode]?.withOpacity(0.8) ?? Colors.grey),
+          side: const BorderSide(color: primaryText),
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: isPostponed
               ? Text(
                   ' PPD ',
-                  style: Styles.notFinishedMatchResultTextStyle(leagueCode),
+                  style: Styles.notFinishedMatchResultTextStyle(),
                 )
               : match.utcDate == null
                   ? Text(
                       ' TBD ',
-                      style: Styles.notFinishedMatchResultTextStyle(leagueCode),
+                      style: Styles.notFinishedMatchResultTextStyle(),
                     )
                   : Text(
                       DateFormat('HH:mm').format(match.utcDate!),
-                      style: Styles.notFinishedMatchResultTextStyle(leagueCode),
+                      style: Styles.notFinishedMatchResultTextStyle(),
                     ),
         ),
       );

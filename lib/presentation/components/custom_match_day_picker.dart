@@ -11,16 +11,14 @@ class CustomMatchDayPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final foregroundColor = leagueColors[leagueCode] ?? Colors.grey;
-    final backgroundColor = leagueTextColors[leagueCode]?.withOpacity(0.8) ?? Colors.black;
     final provider = Provider.of<LeagueMatchesProvider>(context, listen: false);
     return DropdownButton<int>(
       itemHeight: 48.0,
       menuMaxHeight: 300,
       underline: const SizedBox(),
-      dropdownColor: foregroundColor,
+      dropdownColor: Colors.white,
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      style: TextStyle(fontWeight: FontWeight.w900, fontSize: 18, color: backgroundColor),
+      style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 18, color: primaryText),
       value: value.desiredMatchDay,
       items: List.generate(
         totalMatchDays,

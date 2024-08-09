@@ -34,10 +34,10 @@ class TeamInfoScreen extends StatelessWidget {
           final team = value.team!;
           final coach = value.team!.coach;
           return Scaffold(
-            backgroundColor: premierSecondary,
+            backgroundColor: secondaryText,
             appBar: AppBar(
-              backgroundColor: premierPrimary,
-              foregroundColor: premierSecondary,
+              backgroundColor: teamInfoScreenColor,
+              foregroundColor: primaryText,
               title: Text(team.name!),
               actions: [
                 Padding(
@@ -57,6 +57,8 @@ class TeamInfoScreen extends StatelessWidget {
                     title: 'Team Info',
                     icon: Icons.info,
                     isOpen: true,
+                    primaryColor: teamInfoScreenColor,
+                    secondaryColor: primaryText,
                     children: [
                       CustomInfoRow(icon: Icons.area_chart_outlined, info: 'Area', data: team.area.name!),
                       CustomInfoRow(icon: Icons.sports_soccer_outlined, info: 'League', data: leagueName),
@@ -71,6 +73,8 @@ class TeamInfoScreen extends StatelessWidget {
                     title: 'Coach',
                     icon: Icons.sports,
                     isOpen: true,
+                    primaryColor: teamInfoScreenColor,
+                    secondaryColor: primaryText,
                     children: [
                       CustomInfoRow(icon: Icons.sports, info: 'Name', data: coach!.name!),
                       CustomInfoRow(icon: Icons.alarm_add, info: 'Age', data: value.coachAge!),
@@ -83,6 +87,8 @@ class TeamInfoScreen extends StatelessWidget {
                     title: 'Squad',
                     icon: Icons.people,
                     isOpen: true,
+                    primaryColor: teamInfoScreenColor,
+                    secondaryColor: primaryText,
                     children: [
                       TeamSquad(leagueCode: leagueName, teamSquad: value.teamSquad!),
                     ],

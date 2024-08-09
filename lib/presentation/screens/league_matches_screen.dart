@@ -32,10 +32,10 @@ class LeagueMatchesScreen extends StatelessWidget {
         } else {
           final matches = value.desiredMatches.toList();
           return Scaffold(
-            backgroundColor: leagueColors[leagueCode]?.withOpacity(0.8) ?? Colors.grey,
+            backgroundColor: matchesScreenColor,
             appBar: AppBar(
-              foregroundColor: leagueTextColors[leagueCode] ?? Colors.black,
-              backgroundColor: leagueColors[leagueCode]?.withOpacity(0.8) ?? Colors.grey,
+              foregroundColor: primaryText,
+              backgroundColor: matchesScreenColor,
               title: const Text('League Match Day:'),
               actions: [
                 CustomMatchDayPicker(value: value, leagueCode: leagueCode, totalMatchDays: value.totalMatchDay),
@@ -60,11 +60,11 @@ class LeagueMatchesScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            CustomTeamNameContainer(teamTla: match.homeTeam!.tla.toString(), leagueCode: leagueCode),
+                            CustomTeamNameContainer(teamTla: match.homeTeam!.tla.toString()),
                             BuildImage(url: match.homeTeam!.crest.toString(), width: 35),
                             CustomTeamScoreCard(leagueCode: leagueCode, match: match),
                             BuildImage(url: match.awayTeam!.crest.toString(), width: 35),
-                            CustomTeamNameContainer(teamTla: match.awayTeam!.tla.toString(), leagueCode: leagueCode),
+                            CustomTeamNameContainer(teamTla: match.awayTeam!.tla.toString()),
                           ],
                         ),
                       ),

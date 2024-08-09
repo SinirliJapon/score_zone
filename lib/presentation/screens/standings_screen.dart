@@ -50,10 +50,10 @@ class LeagueView extends StatelessWidget {
   Widget build(BuildContext context) {
     final leagueStandingsTable = value.standings.first.table;
     return Scaffold(
-      backgroundColor: premierBackground,
+      backgroundColor: Colors.grey,
       appBar: AppBar(
-        foregroundColor: premierSecondary,
-        backgroundColor: premierPrimary,
+        foregroundColor: secondaryText,
+        backgroundColor: primaryText,
         title: LeaugeTitle(competitionName: value.competitionName!),
         actions: [
           Padding(
@@ -69,6 +69,8 @@ class LeagueView extends StatelessWidget {
               title: 'Competition Info',
               icon: Icons.info,
               isOpen: false,
+              primaryColor: primaryText,
+              secondaryColor: secondaryText,
               children: [
                 InfoRow(icon: Icons.flag, info: 'Area', data: value.area!.name!),
                 InfoRow(icon: Icons.sports_soccer_outlined, info: 'Name', data: value.competitionName!),
@@ -106,6 +108,8 @@ class LeagueView extends StatelessWidget {
               title: 'Standings',
               icon: Icons.format_list_bulleted,
               isOpen: true,
+              primaryColor: primaryText,
+              secondaryColor: secondaryText,
               children: [
                 LeagueStandings(leagueStandingsTable, value.competitionName!),
               ],
@@ -126,10 +130,10 @@ class CupView extends StatelessWidget {
   Widget build(BuildContext context) {
     final cupStandings = value.standings;
     return Scaffold(
-      backgroundColor: premierBackground,
+      backgroundColor: Colors.grey, //TODO: Change this color
       appBar: AppBar(
-        foregroundColor: premierSecondary,
-        backgroundColor: premierPrimary,
+        foregroundColor: secondaryText,
+        backgroundColor: primaryText,
         title: LeaugeTitle(competitionName: value.competitionName!),
       ),
       body: DefaultTabController(
@@ -153,6 +157,8 @@ class CupView extends StatelessWidget {
                         title: 'Competition Info',
                         icon: Icons.info,
                         isOpen: false,
+                        primaryColor: primaryText,
+                        secondaryColor: secondaryText,
                         children: [
                           InfoRow(icon: Icons.flag, info: 'Area', data: value.area!.name!),
                           InfoRow(icon: Icons.sports_soccer_outlined, info: 'Name', data: value.competitionName!),
@@ -208,9 +214,9 @@ class TileButton extends StatelessWidget {
     return Material(
       type: MaterialType.transparency,
       child: ListTile(
-        tileColor: premierPrimary,
-        iconColor: premierSecondary,
-        textColor: premierSecondary,
+        tileColor: primaryText,
+        iconColor: secondaryText,
+        textColor: secondaryText,
         titleTextStyle: Styles.headingTextStyle(),
         leading: Icon(icon),
         title: Text(title),
@@ -234,9 +240,9 @@ class InfoRow extends StatelessWidget {
       leading: Icon(icon),
       title: Text(info),
       trailing: Text(data, style: const TextStyle(fontSize: 16)),
-      iconColor: premierPrimary,
-      textColor: premierPrimary,
-      tileColor: premierSecondary,
+      iconColor: primaryText,
+      textColor: primaryText,
+      tileColor: secondaryText,
     );
   }
 }
@@ -252,7 +258,7 @@ class LeaugeTitle extends StatelessWidget {
       child: Text(
         competitionName,
         style: const TextStyle(
-          color: premierSecondary,
+          color: secondaryText,
           fontWeight: FontWeight.w700,
         ),
       ),

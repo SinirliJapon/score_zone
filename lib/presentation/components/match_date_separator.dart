@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:score_zone/model/match.dart';
+import 'package:score_zone/utils/colors.dart';
 
 class MatchDateSeparator extends StatelessWidget {
   final Match match;
@@ -45,7 +46,7 @@ class MatchDate extends StatelessWidget {
         style: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.bold,
-          color: Colors.white,
+          color: primaryText,
         ),
       ),
     );
