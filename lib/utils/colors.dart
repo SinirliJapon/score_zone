@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
 
-// TODO: Refactor all colors
+// Screen Colors
+const leagueScreenColor = Color(0xFF00D06C);
+const standingsScreenColor = Color(0xFF38003C);
+const playerStatsScreenColor = Color(0xFFE90052);
+const matchesScreenColor = Color(0xFF89CFF0);
+const teamInfoScreenColor = Color(0xFFEBFF00);
+
+// Text Colors
+const primaryText = Color(0xFF38003C);
+const secondaryText = Color(0xFFFFFFFF);
+const darkText = Color(0xFF000000);
+
+// League Colors if needed
 
 const laLigaPrimary = Color(0xFFEE8707);
 const laLigaSecondary = Color(0xFF000000);
@@ -22,35 +34,3 @@ const ligue1Point = Color(0xFFEC1C24);
 const serieAPrimary = Color(0xFF008FD7);
 const serieASecondary = Color(0xFFFFFFFF);
 const serieAPoint = Color(0xFFFF1F11);
-
-const leagueScreenColor = Color(0xFF00D06C);
-const standingsScreenColor = Color(0xFF38003C);
-const playerStatsScreenColor = Color(0xFFE90052);
-const cupScreenColor = Color(0xFF89CFF0);
-const cupScreenText = Color(0xFF000000);
-
-Map<String, Color> leagueColors = {
-  'PL': premierPrimary,
-  'BL1': bundesligaPrimary,
-  'FL1': ligue1Primary,
-  'SA': serieAPrimary,
-  'PD': laLigaPrimary,
-  'CL': cupScreenColor,
-};
-
-Map<String, Color> leagueTextColors = {
-  'PL': premierSecondary,
-  'BL1': bundesligaSecondary,
-  'FL1': ligue1Secondary,
-  'SA': serieASecondary,
-  'PD': laLigaSecondary,
-  'CL': cupScreenText,
-};
-
-Map<String, Color> leaguePointColors = {
-  'PL': premierPoint,
-  'BL1': bundesligaPoint,
-  'FL1': ligue1Point,
-  'SA': serieAPoint,
-  'PD': laLigaPoint,
-};

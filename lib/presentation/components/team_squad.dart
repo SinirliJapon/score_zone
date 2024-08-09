@@ -27,9 +27,9 @@ class TeamSquad extends StatelessWidget {
         child: DataTable(
           dataRowColor: Styles.dataRowColor(),
           dataTextStyle: Styles.dataTextStyle(),
-          headingRowColor: Styles.headingDataRowColor(),
-          headingTextStyle: Styles.headingTextStyle(),
-          border: TableBorder.all(color: premierPrimary, width: 0.5),
+          headingRowColor: Styles.headingTeamDataRowColor(),
+          headingTextStyle: Styles.headingTeamTextStyle(),
+          border: TableBorder.all(color: primaryText, width: 0.5),
           horizontalMargin: 20,
           columnSpacing: 20,
           columns: const <DataColumn>[

@@ -4,11 +4,9 @@ import 'package:score_zone/utils/styles.dart';
 
 class CustomTeamNameContainer extends StatelessWidget {
   final String teamTla;
-  final String leagueCode;
   const CustomTeamNameContainer({
     Key? key,
     required this.teamTla,
-    required this.leagueCode,
   }) : super(key: key);
 
   @override
@@ -16,7 +14,7 @@ class CustomTeamNameContainer extends StatelessWidget {
     return SizedBox(
       width: 50,
       height: 50,
-      child: Center(child: Text(teamTla, style: Styles.matchTeamTextStyle(leagueCode))),
+      child: Center(child: Text(teamTla, style: Styles.matchTeamTextStyle())),
     );
   }
 }

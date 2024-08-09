@@ -14,9 +14,9 @@ class CustomInfoRow extends StatelessWidget {
       leading: Icon(icon),
       title: Text(info),
       trailing: Text(data, style: const TextStyle(fontSize: 16)),
-      iconColor: premierPrimary,
-      textColor: premierPrimary,
-      tileColor: premierSecondary,
+      iconColor: primaryText,
+      textColor: primaryText,
+      tileColor: secondaryText,
     );
   }
 }

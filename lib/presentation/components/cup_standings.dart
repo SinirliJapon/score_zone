@@ -48,7 +48,7 @@ class StandingsGroupCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: premierSecondary,
+      color: secondaryText,
       elevation: 6,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(6.0),

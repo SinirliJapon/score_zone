@@ -15,7 +15,7 @@ class PlayerStatsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<PlayerStatsProvider>(context, listen: false).fetchScorers(leagueCode);
     });
@@ -28,44 +28,55 @@ class PlayerStatsScreen extends StatelessWidget {
         } else {
           final leagueScorersTable = value.scorers;
           return Scaffold(
-            backgroundColor: leagueColors[leagueCode]?.withOpacity(0.8) ?? Colors.grey,
             appBar: AppBar(
-              foregroundColor: leagueTextColors[leagueCode] ?? Colors.black,
-              backgroundColor: leagueColors[leagueCode]?.withOpacity(0.8) ?? Colors.grey,
+              foregroundColor: secondaryText,
+              backgroundColor: playerStatsScreenColor,
               title: LeaugeTitle(competitionName: leagueTitle),
             ),
             body: SingleChildScrollView(
               scrollDirection: Axis.vertical,
-              child: DataTable(
-                columnSpacing: screenHeight / 39,
-                headingRowColor: Styles.dataRowColor(),
-                headingTextStyle: Styles.headingTextStyle(),
-                dataTextStyle: Styles.dataTextStyle(),
-                columns: const <DataColumn>[
-                  DataColumn(label: Text('POS')),
-                  DataColumn(label: Text('NAME')),
-                  DataColumn(label: Text('CLUB')),
-                  DataColumn(label: Text('A')),
-                  DataColumn(label: Text('P')),
-                  DataColumn(label: Text('G')),
-                ],
-                rows: leagueScorersTable.map((scorer) {
-                  final index = leagueScorersTable.indexOf(scorer) + 1;
-                  final teamCrest = scorer.team!.crest.toString();
-                  final teamTla = scorer.team!.tla!.toUpperCase();
-                  final teamId = scorer.team!.id.toString();
-                  return DataRow(
-                    cells: [
-                      DataCell(Text('$index')),
-                      DataCell(Text(scorer.player!.name!)),
-                      DataCell(CustomDataRow(
-                          teamCrest: teamCrest, teamTla: teamTla, teamId: teamId, leagueName: leagueCode)),
-                      DataCell(Text('${scorer.assists}')),
-                      DataCell(Text('${scorer.penalties}')),
-                      DataCell(Text('${scorer.goals}', style: Styles.dataPointTextStyle())),
-                    ],
-                  );
-                }).toList(),
+              child: SizedBox(
+                width: screenWidth,
+                child: DataTable(
+                  horizontalMargin: 20,
+                  columnSpacing: 10,
+                  border: const TableBorder(
+                    top: BorderSide(color: primaryText, width: 0.5),
+                    bottom: BorderSide(color: primaryText, width: 0.5),
+                    left: BorderSide(color: primaryText, width: 0.5),
+                    right: BorderSide(color: primaryText, width: 0.5),
+                  ),
+                  showBottomBorder: true,
+                  dataRowColor: Styles.dataRowColor(),
+                  dataTextStyle: Styles.dataTextStyle(),
+                  headingRowColor: Styles.headingPlayerDataRowColor(),
+                  headingTextStyle: Styles.headingTextStyle(),
+                  columns: const <DataColumn>[
+                    DataColumn(label: Text('POS')),
+                    DataColumn(label: Text('NAME')),
+                    DataColumn(label: Text('CLUB')),
+                    DataColumn(label: Text('A')),
+                    DataColumn(label: Text('P')),
+                    DataColumn(label: Text('G')),
+                  ],
+                  rows: leagueScorersTable.map((scorer) {
+                    final index = leagueScorersTable.indexOf(scorer) + 1;
+                    final teamCrest = scorer.team!.crest.toString();
+                    final teamTla = scorer.team!.tla!.toUpperCase();
+                    final teamId = scorer.team!.id.toString();
+                    return DataRow(
+                      cells: [
+                        DataCell(Text('$index')),
+                        DataCell(Text(scorer.player!.name!)),
+                        DataCell(CustomDataRow(
+                            teamCrest: teamCrest, teamTla: teamTla, teamId: teamId, leagueName: leagueCode)),
+                        DataCell(Text('${scorer.assists}')),
+                        DataCell(Text('${scorer.penalties}')),
+                        DataCell(Text('${scorer.goals}', style: Styles.dataPointTextStyle())),
+                      ],
+                    );
+                  }).toList(),
+                ),
               ),
             ),
           );
