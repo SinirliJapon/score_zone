@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:score_zone/model/match.dart';
-import 'package:score_zone/utils/colors.dart';
+import 'package:score_zone/utils/styles.dart';
 
 class MatchDateSeparator extends StatelessWidget {
   final Match match;
@@ -30,25 +30,16 @@ class MatchDateSeparator extends StatelessWidget {
 }
 
 class MatchDate extends StatelessWidget {
-  const MatchDate({
-    super.key,
-    required this.currentMatchDate,
-  });
-
   final DateTime? currentMatchDate;
+  const MatchDate({super.key, required this.currentMatchDate});
 
   @override
   Widget build(BuildContext context) {
+    final day = DateFormat('EEEE').format(currentMatchDate!);
+    final date = DateFormat('d MMMM').format(currentMatchDate!);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-      child: Text(
-        '${DateFormat('EEEE').format(currentMatchDate!)}, ${DateFormat('d MMMM').format(currentMatchDate!)}',
-        style: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: primaryText,
-        ),
-      ),
+      child: Text('$day, $date', style: Styles.matchHeaderTextStyle()),
     );
   }
 }

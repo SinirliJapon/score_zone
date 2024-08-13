@@ -1,3 +1,4 @@
+import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 import 'package:dio/dio.dart';
 import 'package:score_zone/model/competitions.dart';
@@ -29,8 +30,14 @@ abstract class ApiService {
     @Query('matchday') String matchday,
   );
 
+  @GET('teams/{teamId}/matches')
+  Future<MatchBaseResponse> fetchTeamMatches(
+    @Path('teamId') String teamId,
+    @Query('limit') int limit,
+  );
+
   @GET('/teams/{teamId}')
-  Future<Team> fetchTeam(@Path('teamId') String leagueId);
+  Future<Team> fetchTeam(@Path('teamId') String teamId);
 
 
   @GET('/persons/{playerId}')

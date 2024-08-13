@@ -2,12 +2,15 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:score_zone/model/scorers.dart';
 import 'package:score_zone/model/standings.dart';
+import 'package:score_zone/model/match.dart';
 import 'package:score_zone/services/api_service.dart';
 import 'package:score_zone/utils/functions.dart';
 
 class TeamInfoProvider extends ChangeNotifier {
   final ApiService _apiService;
   bool isLoading = false;
+  int currentLimit = 10;
+
   Team? _team;
   Coach? _coach;
   int? _squadSize;
@@ -16,6 +19,7 @@ class TeamInfoProvider extends ChangeNotifier {
   String? _coachAge;
   String? _coachStart;
   String? _coachUntil;
+  List<Match>? _teamMatches = [];
   List<Player>? _teamSquad = [];
 
   int? get squadSize => _squadSize;
@@ -25,6 +29,7 @@ class TeamInfoProvider extends ChangeNotifier {
   String? get coachUntil => _coachUntil;
   Team? get team => _team;
   Coach? get coach => _coach;
+  List<Match>? get teamMatches => _teamMatches;
   List<Player>? get teamSquad => _teamSquad;
 
   TeamInfoProvider(this._apiService);
@@ -36,12 +41,15 @@ class TeamInfoProvider extends ChangeNotifier {
 
     try {
       final teamResponse = await _apiService.fetchTeam(teamId);
+      final teamMatchResponse = await _apiService.fetchTeamMatches(teamId, currentLimit);
       _team = teamResponse;
       _coach = _team!.coach;
+      _teamMatches = teamMatchResponse.matches;
       if (teamResponse.squad != null && teamResponse.squad!.isNotEmpty) {
         _teamSquad = _team!.squad;
         _squadSize = _teamSquad!.length;
-        List<int> ages = _teamSquad!.map((player) => int.parse(Functions.calculateAge(player.dateOfBirth).toString())).toList();
+        List<int> ages =
+            _teamSquad!.map((player) => int.parse(Functions.calculateAge(player.dateOfBirth).toString())).toList();
         double averageAgeValue = ages.reduce((a, b) => a + b) / _squadSize!;
         _averageAge = averageAgeValue.toStringAsFixed(1);
         _coachAge = Functions.calculateAge(_coach!.dateOfBirth).toString();
@@ -64,4 +72,18 @@ class TeamInfoProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  void changeLimit() {
+    // The function for changing the team matches limit
+    // In free subscription not make sense to use
+    currentLimit = limitChanger(currentLimit);
+    notifyListeners();
+  }
+}
+
+int limitChanger(int currentLimit) {
+  List<int> limits = [10, 15, 20];
+  int currentIndex = limits.indexOf(currentLimit);
+  int nextIndex = (currentIndex + 1) % limits.length;
+  return limits[nextIndex];
 }

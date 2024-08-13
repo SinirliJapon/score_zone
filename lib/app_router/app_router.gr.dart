@@ -79,7 +79,7 @@ abstract class $AppRouter extends _i7.RootStackRouter {
         routeData: routeData,
         child: _i6.TeamInfoScreen(
           key: args.key,
-          leagueName: args.leagueCode,
+          leagueName: args.leagueName,
           teamId: args.teamId,
         ),
       );
@@ -273,14 +273,14 @@ class StandingsRouteArgs {
 class TeamInfoRoute extends _i7.PageRouteInfo<TeamInfoRouteArgs> {
   TeamInfoRoute({
     _i8.Key? key,
-    required String leagueCode,
+    required String leagueName,
     required String teamId,
     List<_i7.PageRouteInfo>? children,
   }) : super(
           TeamInfoRoute.name,
           args: TeamInfoRouteArgs(
             key: key,
-            leagueCode: leagueCode,
+            leagueName: leagueName,
             teamId: teamId,
           ),
           initialChildren: children,
@@ -295,18 +295,18 @@ class TeamInfoRoute extends _i7.PageRouteInfo<TeamInfoRouteArgs> {
 class TeamInfoRouteArgs {
   const TeamInfoRouteArgs({
     this.key,
-    required this.leagueCode,
+    required this.leagueName,
     required this.teamId,
   });
 
   final _i8.Key? key;
 
-  final String leagueCode;
+  final String leagueName;
 
   final String teamId;
 
   @override
   String toString() {
-    return 'TeamInfoRouteArgs{key: $key, leagueCode: $leagueCode, teamId: $teamId}';
+    return 'TeamInfoRouteArgs{key: $key, leagueName: $leagueName, teamId: $teamId}';
   }
 }

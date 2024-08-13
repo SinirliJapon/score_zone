@@ -20,7 +20,7 @@ class CustomDataRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => AutoRouter.of(context).push(TeamInfoRoute(teamId: teamId, leagueCode: leagueName)),
+      onTap: () => AutoRouter.of(context).push(TeamInfoRoute(teamId: teamId, leagueName: leagueName)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

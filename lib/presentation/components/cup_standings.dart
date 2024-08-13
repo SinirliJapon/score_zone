@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:carousel_slider_plus/carousel_slider_plus.dart';
 import 'package:score_zone/utils/colors.dart';
 import 'package:score_zone/utils/styles.dart';
 import 'package:score_zone/model/standings.dart';

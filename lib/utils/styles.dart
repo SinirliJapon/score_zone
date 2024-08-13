@@ -24,7 +24,7 @@ abstract class Styles {
       const TextStyle(fontWeight: FontWeight.w900, fontSize: 14, color: secondaryText);
 
   static TextStyle headingTeamTextStyle() =>
-      const TextStyle(fontWeight: FontWeight.w900, fontSize: 14, color: primaryText);    
+      const TextStyle(fontWeight: FontWeight.w900, fontSize: 14, color: primaryText);
 
   static TextStyle matchTeamTextStyle() =>
       const TextStyle(fontWeight: FontWeight.w900, fontSize: 18, color: primaryText);
@@ -37,4 +37,7 @@ abstract class Styles {
 
   static TextStyle notFinishedMatchResultTextStyle() =>
       const TextStyle(color: primaryText, fontSize: 18, fontWeight: FontWeight.w900);
+
+  static TextStyle matchHeaderTextStyle() =>
+      const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: primaryText);
 }

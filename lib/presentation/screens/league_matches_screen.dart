@@ -1,15 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:score_zone/presentation/components/match_list.dart';
 import 'package:score_zone/utils/colors.dart';
-import 'package:score_zone/presentation/components/build_image.dart';
 import 'package:score_zone/presentation/components/custom_match_day_picker.dart';
-import 'package:score_zone/presentation/components/custom_team_name_container.dart';
-import 'package:score_zone/presentation/components/custom_team_score_card.dart';
-import 'package:score_zone/presentation/components/match_date_separator.dart';
 import 'package:score_zone/provider/league_matches_provider.dart';
-
-// TODO: Make separate design for cup competitions
 
 @RoutePage()
 class LeagueMatchesScreen extends StatelessWidget {
@@ -41,38 +36,7 @@ class LeagueMatchesScreen extends StatelessWidget {
                 CustomMatchDayPicker(value: value, leagueCode: leagueCode, totalMatchDays: value.totalMatchDay),
               ],
             ),
-            body: ListView.separated(
-              itemCount: matches.length,
-              separatorBuilder: (context, index) =>
-                  MatchDateSeparator(match: matches[index], matches: matches, index: index),
-              itemBuilder: (context, index) {
-                final match = matches[index];
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    index == 0 ? MatchDate(currentMatchDate: matches[0].utcDate!) : const SizedBox(),
-                    Card(
-                      elevation: 6.0,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
-                      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            CustomTeamNameContainer(teamTla: match.homeTeam!.tla.toString()),
-                            BuildImage(url: match.homeTeam!.crest.toString(), width: 35),
-                            CustomTeamScoreCard(leagueCode: leagueCode, match: match),
-                            BuildImage(url: match.awayTeam!.crest.toString(), width: 35),
-                            CustomTeamNameContainer(teamTla: match.awayTeam!.tla.toString()),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                );
-              },
-            ),
+            body: MatchList(matches: matches, isScroll: true),
           );
         }
       },
