@@ -4,6 +4,7 @@ import 'package:score_zone/presentation/components/custom_team_name_container.da
 import 'package:score_zone/presentation/components/custom_team_score_card.dart';
 import 'package:score_zone/presentation/components/match_date_separator.dart';
 import 'package:score_zone/model/match.dart';
+import 'package:score_zone/presentation/screens/standings_screen.dart';
 import 'package:score_zone/utils/styles.dart';
 
 class MatchList extends StatelessWidget {
@@ -14,39 +15,43 @@ class MatchList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      shrinkWrap: true,
-      physics: matchListPhysics(isScroll),
-      itemCount: matches.length,
-      separatorBuilder: (context, index) => MatchDateSeparator(match: matches[index], matches: matches, index: index),
-      itemBuilder: (context, index) {
-        final match = matches[index];
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            MatchHeader(index: index, match: match, currentMatchDate: matches[0].utcDate!),
-            Card(
-              elevation: 6.0,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
-              margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    CustomTeamNameContainer(teamTla: match.homeTeam!.tla.toString()),
-                    BuildImage(url: match.homeTeam!.crest.toString(), width: 35),
-                    CustomTeamScoreCard(match: match),
-                    BuildImage(url: match.awayTeam!.crest.toString(), width: 35),
-                    CustomTeamNameContainer(teamTla: match.awayTeam!.tla.toString()),
-                  ],
+    if (matches.isEmpty) {
+      return const InfoRow(icon: Icons.error, info: 'No Match Data Found', data: '');
+    } else {
+      return ListView.separated(
+        shrinkWrap: true,
+        physics: matchListPhysics(isScroll),
+        itemCount: matches.length,
+        separatorBuilder: (context, index) => MatchDateSeparator(match: matches[index], matches: matches, index: index),
+        itemBuilder: (context, index) {
+          final match = matches[index];
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              MatchHeader(index: index, match: match, currentMatchDate: matches[0].utcDate!),
+              Card(
+                elevation: 6.0,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+                margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      CustomTeamNameContainer(teamTla: match.homeTeam!.tla.toString()),
+                      BuildImage(url: match.homeTeam!.crest.toString(), width: 35),
+                      CustomTeamScoreCard(match: match),
+                      BuildImage(url: match.awayTeam!.crest.toString(), width: 35),
+                      CustomTeamNameContainer(teamTla: match.awayTeam!.tla.toString()),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
-        );
-      },
-    );
+            ],
+          );
+        },
+      );
+    }
   }
 }
 
@@ -79,7 +84,6 @@ class MatchHeader extends StatelessWidget {
     }
   }
 }
-
 
 ScrollPhysics matchListPhysics(bool isScroll) {
   if (isScroll) {

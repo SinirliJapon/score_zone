@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:score_zone/presentation/components/build_image.dart';
 import 'package:score_zone/presentation/components/custom_expansion_tile.dart';
 import 'package:score_zone/presentation/components/custom_info_row.dart';
+import 'package:score_zone/presentation/components/match_list.dart';
 import 'package:score_zone/provider/player_info_provider.dart';
 import 'package:score_zone/utils/colors.dart';
 import 'package:score_zone/utils/icons.dart';
@@ -31,8 +32,8 @@ class PlayerInfoScreen extends StatelessWidget {
       } else {
         final player = value.player!;
         final team = value.player!.currentTeam;
+        final matches = value.playerMatches!;
         return Scaffold(
-          backgroundColor: primaryText,
           appBar: AppBar(
             backgroundColor: teamInfoScreenColor,
             foregroundColor: primaryText,
@@ -63,6 +64,16 @@ class PlayerInfoScreen extends StatelessWidget {
                     CustomInfoRow(icon: Icons.flag, info: 'Nationality', data: player.nationality!),
                     CustomInfoRow(icon: contractStart, info: 'Contract Start', data: value.contractStart!),
                     CustomInfoRow(icon: contractUntil, info: 'Contract Until', data: value.contractUntil!),
+                  ],
+                ),
+                CustomExpansionTile(
+                  isOpen: true,
+                  icon: Icons.sports_soccer,
+                  title: "Player Matches",
+                  primaryColor: teamInfoScreenColor,
+                  secondaryColor: primaryText,
+                  children: [
+                    MatchList(matches: matches, isScroll: false),
                   ],
                 ),
               ],
