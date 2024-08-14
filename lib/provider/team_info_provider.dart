@@ -9,7 +9,7 @@ import 'package:score_zone/utils/functions.dart';
 class TeamInfoProvider extends ChangeNotifier {
   final ApiService _apiService;
   bool isLoading = false;
-  int currentLimit = 10;
+  int currentLimit = 100;
 
   Team? _team;
   Coach? _coach;
@@ -76,6 +76,7 @@ class TeamInfoProvider extends ChangeNotifier {
   void changeLimit() {
     // The function for changing the team matches limit
     // In free subscription not make sense to use
+    // It could be used for player info provider
     currentLimit = limitChanger(currentLimit);
     notifyListeners();
   }
