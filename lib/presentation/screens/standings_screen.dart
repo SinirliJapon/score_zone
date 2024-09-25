@@ -30,10 +30,15 @@ class StandingsScreen extends StatelessWidget {
           return const Center(child: Text('No standings available...'));
         } else {
           final competitionType = value.competitionType.toString();
+          final competitionGroup = value.standings.first.group;
           if (competitionType == 'LEAGUE') {
             return LeagueView(value: value);
           } else {
-            return CupView(value: value);
+            if (competitionGroup == "League phase") {
+              return LeagueView(value: value);
+            } else {
+              return CupView(value: value);
+            }
           }
         }
       },
