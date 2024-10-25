@@ -5,9 +5,9 @@ import 'package:jovial_svg/jovial_svg.dart';
 class BuildImage extends StatelessWidget {
   final String url;
   final double width;
-  final ScalableImageCache cache = ScalableImageCache(size: 100);
+  static final ScalableImageCache cache = ScalableImageCache(size: 100);
 
-  BuildImage({
+  const BuildImage({
     Key? key,
     required this.url,
     required this.width,
@@ -23,14 +23,12 @@ class BuildImage extends StatelessWidget {
       height: width,
       width: width,
       child: ScalableImageWidget.fromSISource(
+        scale: 0.5,
         cache: cache,
         isComplex: true,
+        reload: true,
         fit: BoxFit.cover,
-        si: ScalableImageSource.fromSvgHttpUrl(
-          Uri.parse(url),
-          compact: true,
-          bigFloats: true,
-        ),
+        si: ScalableImageSource.fromSvgHttpUrl(Uri.parse(url)),
       ),
     );
   }
@@ -40,6 +38,7 @@ class BuildImage extends StatelessWidget {
       imageUrl: url,
       width: width,
       height: width,
+      fit: BoxFit.cover,
       placeholder: (BuildContext context, String url) {
         return _buildPlaceholder();
       },

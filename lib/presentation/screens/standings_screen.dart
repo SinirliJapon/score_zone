@@ -159,25 +159,12 @@ class CupView extends StatelessWidget {
         title: Text(value.competitionName!),
         titleTextStyle: const TextStyle(color: secondaryText, fontWeight: FontWeight.w700, fontSize: 18),
       ),
-      body: DefaultTabController(
-        length: 2,
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            const TabBar(
-              tabs: [
-                Tab(text: 'Group Standings'),
-                Tab(text: 'Competition Info'),
-              ],
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.8,
-              child: TabBarView(
-                children: [
-                  CupStandings(cupStandings),
-                  CompetitionInfo(value: value),
-                ],
-              ),
-            ),
+            CompetitionInfo(value: value),
+            CupStandings(cupStandings),
+            const SizedBox(height: 20),
           ],
         ),
       ),
