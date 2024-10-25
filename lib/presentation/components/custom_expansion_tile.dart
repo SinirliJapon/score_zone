@@ -21,16 +21,22 @@ class CustomExpansionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ExpansionTile(
-      initiallyExpanded: isOpen,
-      leading: Icon(icon),
-      collapsedBackgroundColor: primaryColor,
-      collapsedIconColor: secondaryColor,
-      collapsedTextColor: secondaryColor,
-      backgroundColor: secondaryText,
-      iconColor: primaryText,
-      title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-      children: children,
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: ExpansionTile(
+        maintainState: true,
+        initiallyExpanded: isOpen,
+        leading: Icon(icon),
+        collapsedBackgroundColor: primaryColor,
+        collapsedIconColor: secondaryColor,
+        collapsedTextColor: secondaryColor,
+        backgroundColor: secondaryText,
+        iconColor: primaryText,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+        collapsedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+        title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+        children: children,
+      ),
     );
   }
 }

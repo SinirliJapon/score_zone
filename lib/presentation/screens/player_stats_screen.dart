@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:score_zone/utils/colors.dart';
 import 'package:score_zone/utils/styles.dart';
 import 'package:score_zone/presentation/components/custom_data_row.dart';
-import 'package:score_zone/presentation/screens/standings_screen.dart';
 import 'package:score_zone/provider/player_stats_provider.dart';
 
 @RoutePage()
@@ -31,7 +30,8 @@ class PlayerStatsScreen extends StatelessWidget {
             appBar: AppBar(
               foregroundColor: secondaryText,
               backgroundColor: playerStatsScreenColor,
-              title: LeaugeTitle(competitionName: leagueTitle),
+              title: Text(leagueTitle),
+              titleTextStyle: const TextStyle(color: secondaryText, fontWeight: FontWeight.w700, fontSize: 18),
             ),
             body: SingleChildScrollView(
               scrollDirection: Axis.vertical,

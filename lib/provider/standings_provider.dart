@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:score_zone/model/standings.dart';
 import 'package:score_zone/services/api_service.dart';
+import 'package:score_zone/utils/functions.dart';
 
 class StandingsProvider extends ChangeNotifier {
   final ApiService _apiService;
@@ -11,6 +12,8 @@ class StandingsProvider extends ChangeNotifier {
   String? _competitionType;
   String? _competitionCode;
   String? _competitionEmblem;
+  String? _competitionStartDate;
+  String? _competitionEndDate;
   Season? _season;
   Area? _area;
   List<StandingsData> _standingsTable = [];
@@ -20,6 +23,8 @@ class StandingsProvider extends ChangeNotifier {
   String? get competitionType => _competitionType;
   String? get competitionCode => _competitionCode;
   String? get competitionEmblem => _competitionEmblem;
+  String? get competitionStartDate => _competitionStartDate;
+  String? get competitionEndDate => _competitionEndDate;
   int? get currentMatchDay => _currentMatchDay;
   Season? get season => _season;
   Area? get area => _area;
@@ -39,6 +44,8 @@ class StandingsProvider extends ChangeNotifier {
       _competitionType = standingsResponse.competition.type!;
       _competitionCode = standingsResponse.competition.code!;
       _competitionEmblem = standingsResponse.competition.emblem!;
+      _competitionStartDate = Functions.formatLeagueDate(standingsResponse.season.startDate!);
+      _competitionEndDate = Functions.formatLeagueDate(standingsResponse.season.endDate!);
       _area = standingsResponse.area;
       _season = standingsResponse.season;
     } catch (e) {
