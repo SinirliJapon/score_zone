@@ -10,6 +10,7 @@ class TeamInfoProvider extends ChangeNotifier {
   final ApiService _apiService;
   bool isLoading = false;
   int currentLimit = 100;
+  String matchStatus = 'SCHEDULED';
 
   Team? _team;
   Coach? _coach;
@@ -41,15 +42,14 @@ class TeamInfoProvider extends ChangeNotifier {
 
     try {
       final teamResponse = await _apiService.fetchTeam(teamId);
-      final teamMatchResponse = await _apiService.fetchTeamMatches(teamId, currentLimit);
+      final teamMatchResponse = await _apiService.fetchTeamMatches(teamId, matchStatus, currentLimit);
       _team = teamResponse;
       _coach = _team!.coach;
       _teamMatches = teamMatchResponse.matches;
       if (teamResponse.squad != null && teamResponse.squad!.isNotEmpty) {
         _teamSquad = _team!.squad;
         _squadSize = _teamSquad!.length;
-        List<int> ages =
-            _teamSquad!.map((player) => int.parse(Functions.calculateAge(player.dateOfBirth).toString())).toList();
+        List<int> ages = _teamSquad!.map((player) => int.parse(Functions.calculateAge(player.dateOfBirth).toString())).toList();
         double averageAgeValue = ages.reduce((a, b) => a + b) / _squadSize!;
         _averageAge = averageAgeValue.toStringAsFixed(1);
         _coachAge = Functions.calculateAge(_coach!.dateOfBirth).toString();
@@ -67,6 +67,35 @@ class TeamInfoProvider extends ChangeNotifier {
     } catch (e) {
       errorMessage = 'Failed to fetch squad: $e';
       _teamSquad = null;
+    } finally {
+      isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<void> toggleMatchStatus(String teamId) async {
+    matchStatus = matchStatus == 'SCHEDULED' ? 'FINISHED' : 'SCHEDULED';
+    await fetchTeamMatches(teamId);
+  }
+
+  Future<void> fetchTeamMatches(String teamId) async {
+    isLoading = true;
+    errorMessage = null;
+    notifyListeners();
+
+    try {
+      final teamMatchResponse = await _apiService.fetchTeamMatches(teamId, matchStatus, currentLimit);
+      _teamMatches = teamMatchResponse.matches;
+    } on DioException catch (e) {
+      if (e.response != null) {
+        errorMessage = "Error: ${e.response!.statusCode}";
+      } else {
+        errorMessage = "Error: ${e.message}";
+      }
+      _teamMatches = null;
+    } catch (e) {
+      errorMessage = 'Failed to fetch team matches: $e';
+      _teamMatches = null;
     } finally {
       isLoading = false;
       notifyListeners();

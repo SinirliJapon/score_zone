@@ -116,7 +116,10 @@ class LeagueView extends StatelessWidget {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20.0),
-            child: BuildImage(url: value.area!.flag!, width: 30),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(6.0),
+              child: BuildImage(url: value.area!.flag!, width: 30),
+            ),
           ),
         ],
       ),
@@ -156,7 +159,7 @@ class CupView extends StatelessWidget {
       appBar: AppBar(
         foregroundColor: secondaryText,
         backgroundColor: primaryText,
-        title: Text(value.competitionName!),
+        title: Center(child: Text(value.competitionName!)),
         titleTextStyle: const TextStyle(color: secondaryText, fontWeight: FontWeight.w700, fontSize: 18),
       ),
       body: SingleChildScrollView(
@@ -171,7 +174,6 @@ class CupView extends StatelessWidget {
     );
   }
 }
-
 class TileButton extends StatelessWidget {
   final IconData icon;
   final String title;

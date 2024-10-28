@@ -32,7 +32,7 @@ class CustomExpansionTile extends StatelessWidget {
         collapsedTextColor: secondaryColor,
         backgroundColor: secondaryText,
         iconColor: primaryText,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0), side: const BorderSide(color: primaryText)),
         collapsedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
         title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
         children: children,

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:score_zone/presentation/components/build_image.dart';
 import 'package:score_zone/presentation/components/custom_expansion_tile.dart';
 import 'package:score_zone/presentation/components/custom_info_row.dart';
+import 'package:score_zone/presentation/components/custom_match_status_switch.dart';
 import 'package:score_zone/presentation/components/match_list.dart';
 import 'package:score_zone/presentation/components/team_squad.dart';
 import 'package:score_zone/utils/colors.dart';
@@ -35,6 +36,7 @@ class TeamInfoScreen extends StatelessWidget {
           final team = value.team!;
           final coach = value.team!.coach;
           final matches = value.teamMatches!;
+
           return Scaffold(
             backgroundColor: secondaryText,
             appBar: AppBar(
@@ -103,6 +105,8 @@ class TeamInfoScreen extends StatelessWidget {
                     primaryColor: teamInfoScreenColor,
                     secondaryColor: primaryText,
                     children: [
+                      CustomMatchStatusSwitch(teamId: value.team!.id.toString()),
+                      const SizedBox(height: 20),
                       MatchList(matches: matches, isScroll: false),
                     ],
                   ),
