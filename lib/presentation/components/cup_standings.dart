@@ -14,19 +14,21 @@ class CupStandings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 6.0,
+      color: premierSecondary,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(6.0),
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
-          child: ListView.separated(
+          child: ListView.builder(
             shrinkWrap: true,
+            primary: false,
+            cacheExtent: 300.0,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: standingsData.length,
             itemBuilder: (BuildContext context, int index) {
               final groupStandings = standingsData[index];
               return GroupContainer(groupStandings);
             },
-            separatorBuilder: (context, index) => const SizedBox(),
           ),
         ),
       ),
@@ -96,15 +98,25 @@ class GroupName extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            premierPrimary.withOpacity(0.85),
+            premierPrimary.withOpacity(0.65),
+          ],
+        ),
+      ),
       child: Center(
         child: Text(
-          "${groupStandings.group}",
+          "${groupStandings.group.toUpperCase()}",
           style: const TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 18,
-            color: standingsScreenColor,
+            fontSize: 22,
+            color: premierSecondary,
+            letterSpacing: 1.2,
           ),
         ),
       ),
@@ -123,7 +135,10 @@ class TeamImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(children: [
-      BuildImage(url: data.team.crest!, width: 30),
+      ClipRRect(
+        borderRadius: BorderRadius.circular(6.0),
+        child: BuildImage(url: data.team.crest!, width: 30),
+      ),
       const SizedBox(width: 5),
       Text(data.team.tla!.toUpperCase()),
     ]);

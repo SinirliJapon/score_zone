@@ -18,38 +18,41 @@ class MatchList extends StatelessWidget {
     if (matches.isEmpty) {
       return const InfoRow(icon: Icons.error, info: 'No Match Data Found', data: '');
     } else {
-      return ListView.separated(
-        shrinkWrap: true,
-        physics: matchListPhysics(isScroll),
-        itemCount: matches.length,
-        separatorBuilder: (context, index) => MatchDateSeparator(match: matches[index], matches: matches, index: index),
-        itemBuilder: (context, index) {
-          final match = matches[index];
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              MatchHeader(index: index, match: match, currentMatchDate: matches[0].utcDate!),
-              Card(
-                elevation: 6.0,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
-                margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      CustomTeamNameContainer(teamTla: match.homeTeam!.tla.toString()),
-                      BuildImage(url: match.homeTeam!.crest.toString(), width: 35),
-                      CustomTeamScoreCard(match: match),
-                      BuildImage(url: match.awayTeam!.crest.toString(), width: 35),
-                      CustomTeamNameContainer(teamTla: match.awayTeam!.tla.toString()),
-                    ],
+      return SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: ListView.separated(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: matches.length,
+          separatorBuilder: (context, index) => MatchDateSeparator(match: matches[index], matches: matches, index: index),
+          itemBuilder: (context, index) {
+            final match = matches[index];
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                MatchHeader(index: index, match: match, currentMatchDate: matches[0].utcDate!),
+                Card(
+                  elevation: 6.0,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+                  margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        CustomTeamNameContainer(teamTla: match.homeTeam!.tla.toString()),
+                        BuildImage(url: match.homeTeam!.crest.toString(), width: 35),
+                        CustomTeamScoreCard(match: match),
+                        BuildImage(url: match.awayTeam!.crest.toString(), width: 35),
+                        CustomTeamNameContainer(teamTla: match.awayTeam!.tla.toString()),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          );
-        },
+              ],
+            );
+          },
+        ),
       );
     }
   }
@@ -59,8 +62,7 @@ class MatchHeader extends StatelessWidget {
   final int index;
   final Match match;
   final DateTime? currentMatchDate;
-  const MatchHeader({required this.index, required this.match, required this.currentMatchDate, Key? key})
-      : super(key: key);
+  const MatchHeader({required this.index, required this.match, required this.currentMatchDate, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -85,19 +87,10 @@ class MatchHeader extends StatelessWidget {
   }
 }
 
-ScrollPhysics matchListPhysics(bool isScroll) {
-  if (isScroll) {
-    return const ScrollPhysics();
-  } else {
-    return const NeverScrollableScrollPhysics();
-  }
-}
-
 String matchStage(Match match) {
   String formattedStage = match.stage!.toLowerCase().replaceAll('_', ' ');
 
-  String capitalizedStage =
-      formattedStage.split(' ').map((word) => word[0].toUpperCase() + word.substring(1)).join(' ');
+  String capitalizedStage = formattedStage.split(' ').map((word) => word[0].toUpperCase() + word.substring(1)).join(' ');
 
   return capitalizedStage;
 }
