@@ -41,7 +41,10 @@ class PlayerInfoScreen extends StatelessWidget {
             actions: [
               Padding(
                 padding: const EdgeInsets.only(right: 20.0),
-                child: BuildImage(url: team.area.flag!, width: 30),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(6.0),
+                  child: BuildImage(url: team.area.flag!, width: 30),
+                ),
               ),
             ],
           ),

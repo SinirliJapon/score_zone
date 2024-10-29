@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:score_zone/provider/team_info_provider.dart';
 import 'package:score_zone/utils/colors.dart';
 
+// It can be used later on
 class CustomMatchStatusSwitch extends StatelessWidget {
   final String teamId;
   
@@ -23,7 +24,7 @@ class CustomMatchStatusSwitch extends StatelessWidget {
             inactiveThumbColor: secondaryText,
             value: provider.matchStatus == 'FINISHED',
             onChanged: (value) {
-              provider.toggleMatchStatus(teamId);
+              // provider.toggleMatchStatus(teamId); 
             },
           ),
         ],

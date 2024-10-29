@@ -33,7 +33,7 @@ abstract class ApiService {
   @GET('teams/{teamId}/matches')
   Future<MatchBaseResponse> fetchTeamMatches(
     @Path('teamId') String teamId,
-    @Query('status') String matchStatus,
+    // @Query('status') String matchStatus,
     @Query('limit') int limit,
   );
 

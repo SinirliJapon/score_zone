@@ -21,6 +21,9 @@ class TeamInfoProvider extends ChangeNotifier {
   String? _coachStart;
   String? _coachUntil;
   List<Match>? _teamMatches = [];
+  List<Match>? _finishedMatches = [];
+  List<Match>? _timedMatches = [];
+  List<Match>? _upcomingMatches = [];
   List<Player>? _teamSquad = [];
 
   int? get squadSize => _squadSize;
@@ -31,6 +34,9 @@ class TeamInfoProvider extends ChangeNotifier {
   Team? get team => _team;
   Coach? get coach => _coach;
   List<Match>? get teamMatches => _teamMatches;
+  List<Match>? get finishedMatches => _finishedMatches;
+  List<Match>? get timedMatches => _timedMatches;
+  List<Match>? get upcomingMatches => _upcomingMatches;
   List<Player>? get teamSquad => _teamSquad;
 
   TeamInfoProvider(this._apiService);
@@ -42,10 +48,13 @@ class TeamInfoProvider extends ChangeNotifier {
 
     try {
       final teamResponse = await _apiService.fetchTeam(teamId);
-      final teamMatchResponse = await _apiService.fetchTeamMatches(teamId, matchStatus, currentLimit);
+      final teamMatchResponse = await _apiService.fetchTeamMatches(teamId, currentLimit);
       _team = teamResponse;
       _coach = _team!.coach;
       _teamMatches = teamMatchResponse.matches;
+      _finishedMatches = teamMatches!.where((match) => match.status == 'FINISHED').toList();
+      _timedMatches = teamMatches!.where((match) => match.status == 'TIMED').toList();
+      _upcomingMatches = teamMatches!.where((match) => match.status == 'SCHEDULED').toList();
       if (teamResponse.squad != null && teamResponse.squad!.isNotEmpty) {
         _teamSquad = _team!.squad;
         _squadSize = _teamSquad!.length;
@@ -73,34 +82,34 @@ class TeamInfoProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> toggleMatchStatus(String teamId) async {
-    matchStatus = matchStatus == 'SCHEDULED' ? 'FINISHED' : 'SCHEDULED';
-    await fetchTeamMatches(teamId);
-  }
+  // Future<void> toggleMatchStatus(String teamId) async {
+  //   matchStatus = matchStatus == 'SCHEDULED' ? 'FINISHED' : 'SCHEDULED';
+  //   await fetchTeamMatches(teamId);
+  // }
 
-  Future<void> fetchTeamMatches(String teamId) async {
-    isLoading = true;
-    errorMessage = null;
-    notifyListeners();
+  // Future<void> fetchTeamMatches(String teamId) async {
+  //   isLoading = true;
+  //   errorMessage = null;
+  //   notifyListeners();
 
-    try {
-      final teamMatchResponse = await _apiService.fetchTeamMatches(teamId, matchStatus, currentLimit);
-      _teamMatches = teamMatchResponse.matches;
-    } on DioException catch (e) {
-      if (e.response != null) {
-        errorMessage = "Error: ${e.response!.statusCode}";
-      } else {
-        errorMessage = "Error: ${e.message}";
-      }
-      _teamMatches = null;
-    } catch (e) {
-      errorMessage = 'Failed to fetch team matches: $e';
-      _teamMatches = null;
-    } finally {
-      isLoading = false;
-      notifyListeners();
-    }
-  }
+  //   try {
+  //     final teamMatchResponse = await _apiService.fetchTeamMatches(teamId, matchStatus, currentLimit);
+  //     _teamMatches = teamMatchResponse.matches;
+  //   } on DioException catch (e) {
+  //     if (e.response != null) {
+  //       errorMessage = "Error: ${e.response!.statusCode}";
+  //     } else {
+  //       errorMessage = "Error: ${e.message}";
+  //     }
+  //     _teamMatches = null;
+  //   } catch (e) {
+  //     errorMessage = 'Failed to fetch team matches: $e';
+  //     _teamMatches = null;
+  //   } finally {
+  //     isLoading = false;
+  //     notifyListeners();
+  //   }
+  // }
 
   void changeLimit() {
     // The function for changing the team matches limit

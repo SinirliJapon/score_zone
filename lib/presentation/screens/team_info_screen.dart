@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:score_zone/presentation/components/build_image.dart';
 import 'package:score_zone/presentation/components/custom_expansion_tile.dart';
 import 'package:score_zone/presentation/components/custom_info_row.dart';
-import 'package:score_zone/presentation/components/custom_match_status_switch.dart';
 import 'package:score_zone/presentation/components/match_list.dart';
 import 'package:score_zone/presentation/components/team_squad.dart';
 import 'package:score_zone/utils/colors.dart';
@@ -35,8 +34,9 @@ class TeamInfoScreen extends StatelessWidget {
         } else {
           final team = value.team!;
           final coach = value.team!.coach;
-          final matches = value.teamMatches!;
-
+          final finishedMatches = value.finishedMatches;
+          final timedMatches = value.timedMatches;
+          final upcomingMatches = value.upcomingMatches;
           return Scaffold(
             backgroundColor: secondaryText,
             appBar: AppBar(
@@ -46,7 +46,10 @@ class TeamInfoScreen extends StatelessWidget {
               actions: [
                 Padding(
                   padding: const EdgeInsets.only(right: 20.0),
-                  child: BuildImage(url: team.area.flag!, width: 30),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(6.0),
+                    child: BuildImage(url: team.area.flag!, width: 30),
+                  ),
                 ),
               ],
             ),
@@ -100,14 +103,32 @@ class TeamInfoScreen extends StatelessWidget {
                   ),
                   CustomExpansionTile(
                     isOpen: true,
-                    icon: Icons.sports_soccer,
-                    title: 'Team Matches',
+                    icon: Icons.flag,
+                    title: 'Finished Matches',
                     primaryColor: teamInfoScreenColor,
                     secondaryColor: primaryText,
                     children: [
-                      CustomMatchStatusSwitch(teamId: value.team!.id.toString()),
-                      const SizedBox(height: 20),
-                      MatchList(matches: matches, isScroll: false),
+                      MatchList(matches: finishedMatches!, isScroll: false),
+                    ],
+                  ),
+                  CustomExpansionTile(
+                    isOpen: true,
+                    icon: Icons.lock_clock,
+                    title: 'Timed Matches',
+                    primaryColor: teamInfoScreenColor,
+                    secondaryColor: primaryText,
+                    children: [
+                      MatchList(matches: timedMatches!, isScroll: false),
+                    ],
+                  ),
+                  CustomExpansionTile(
+                    isOpen: true,
+                    icon: Icons.schedule,
+                    title: 'Scheduled Matches',
+                    primaryColor: teamInfoScreenColor,
+                    secondaryColor: primaryText,
+                    children: [
+                      MatchList(matches: upcomingMatches!, isScroll: false),
                     ],
                   ),
                 ],

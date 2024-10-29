@@ -10,6 +10,8 @@ class PlayerInfoProvider extends ChangeNotifier {
   String? errorMessage;
   int currentLimit = 10;
 
+  // Match Status don't required, all matches status are consists of finished matches
+
   Player? _player;
   String? _fullName;
   String? _playerAge;
@@ -17,6 +19,9 @@ class PlayerInfoProvider extends ChangeNotifier {
   String? _contractStart;
   String? _contractUntil;
   List<Match>? _playerMatches = [];
+  // List<Match>? _finishedMatches = [];
+  // List<Match>? _timedMatches = [];
+  // List<Match>? _upcomingMatches = [];
 
   Player? get player => _player;
   String? get fullName => _fullName;
@@ -25,6 +30,9 @@ class PlayerInfoProvider extends ChangeNotifier {
   String? get contractStart => _contractStart;
   String? get contractUntil => _contractUntil;
   List<Match>? get playerMatches => _playerMatches;
+  // List<Match>? get finishedMatches => _finishedMatches;
+  // List<Match>? get timedMatches => _timedMatches;
+  // List<Match>? get upcomingMatches => _upcomingMatches;
 
   PlayerInfoProvider(this._apiService);
 
@@ -36,6 +44,9 @@ class PlayerInfoProvider extends ChangeNotifier {
     try {
       _player = playerResponse;
       _playerMatches = playerMatchesResponse.matches;
+      // _finishedMatches = _playerMatches!.where((match) => match.status == 'FINISHED').toList();
+      // _timedMatches = _playerMatches!.where((match) => match.status == 'TIMED').toList();
+      // _upcomingMatches = _playerMatches!.where((match) => match.status == 'SCHEDULED').toList();
       _fullName = '${_player!.firstName} ${_player!.lastName}';
       _playerAge = Functions.calculateAge(_player!.dateOfBirth).toString();
       _playerBirth = Functions.formatLeagueDate(_player!.dateOfBirth!);
