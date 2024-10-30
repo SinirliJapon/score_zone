@@ -18,6 +18,7 @@ class TeamInfoProvider extends ChangeNotifier {
   String? _averageAge;
   String? errorMessage;
   String? _coachAge;
+  String? _coachBirth;
   String? _coachStart;
   String? _coachUntil;
   List<Match>? _teamMatches = [];
@@ -29,6 +30,7 @@ class TeamInfoProvider extends ChangeNotifier {
   int? get squadSize => _squadSize;
   String? get averageAge => _averageAge;
   String? get coachAge => _coachAge;
+  String? get coachBirth => _coachBirth;
   String? get coachStart => _coachStart;
   String? get coachUntil => _coachUntil;
   Team? get team => _team;
@@ -62,6 +64,7 @@ class TeamInfoProvider extends ChangeNotifier {
         double averageAgeValue = ages.reduce((a, b) => a + b) / _squadSize!;
         _averageAge = averageAgeValue.toStringAsFixed(1);
         _coachAge = Functions.calculateAge(_coach!.dateOfBirth).toString();
+        _coachBirth = Functions.formatLeagueDate(_coach!.dateOfBirth!);
         _coachStart = Functions.formatDate(_coach!.contract.start!);
         _coachUntil = Functions.formatDate(_coach!.contract.until!);
         errorMessage = null;

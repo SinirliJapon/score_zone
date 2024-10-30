@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:score_zone/presentation/components/build_image.dart';
 import 'package:score_zone/presentation/components/custom_team_name_container.dart';
 import 'package:score_zone/presentation/components/custom_team_score_card.dart';
+import 'package:score_zone/presentation/components/info_row.dart';
 import 'package:score_zone/presentation/components/match_date_separator.dart';
 import 'package:score_zone/model/match.dart';
-import 'package:score_zone/presentation/screens/standings_screen.dart';
 import 'package:score_zone/utils/styles.dart';
 
 class MatchList extends StatelessWidget {

@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:score_zone/utils/colors.dart';
 
 abstract class Functions {
   static int calculateAge(String? dateOfBirth) {
@@ -54,4 +56,27 @@ abstract class Functions {
     shortenedName += lastName;
     return shortenedName;
   }
+
+  static void showPopup(BuildContext context, String title, String details) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return GestureDetector(
+        onTap: () => Navigator.of(context).pop(),
+        child: AlertDialog(
+          title: Text(title),
+          content: Text(details),
+          titlePadding: const EdgeInsets.all(20),
+          contentPadding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+          titleTextStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: primaryText),
+          contentTextStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: primaryText),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+          backgroundColor: premierSecondary,
+          alignment: Alignment.center,
+          elevation: 2,
+        ),
+      );
+    },
+  );
+}
 }
