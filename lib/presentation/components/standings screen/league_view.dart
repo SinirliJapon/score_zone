@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:score_zone/presentation/components/build_image.dart';
 import 'package:score_zone/presentation/components/custom_expansion_tile.dart';
-import 'package:score_zone/presentation/components/league_standings.dart';
+import 'package:score_zone/presentation/components/standings%20screen/league_standings.dart';
 import 'package:score_zone/provider/standings_provider.dart';
 import 'package:score_zone/utils/colors.dart';
 import 'package:score_zone/utils/icons.dart';
@@ -17,7 +17,6 @@ class LeagueView extends StatelessWidget {
   Widget build(BuildContext context) {
     final leagueStandingsTable = value.standings.first.table;
     return Scaffold(
-      backgroundColor: Colors.grey,
       appBar: AppBar(
         foregroundColor: secondaryText,
         backgroundColor: primaryText,

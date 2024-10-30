@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:score_zone/app_router/app_router.gr.dart';
 import 'package:score_zone/presentation/components/build_image.dart';
 import 'package:score_zone/presentation/components/custom_expansion_tile.dart';
-import 'package:score_zone/presentation/components/info_row.dart';
+import 'package:score_zone/presentation/components/custom_info_row.dart';
 import 'package:score_zone/provider/standings_provider.dart';
 import 'package:score_zone/utils/colors.dart';
 import 'package:score_zone/utils/icons.dart';
@@ -26,11 +26,11 @@ class CompetitionInfo extends StatelessWidget {
           secondaryColor: secondaryText,
           children: [
             Center(child: BuildImage(url: value.competitionEmblem!, width: 200)),
-            InfoRow(icon: AppIcons.competitionAreaIcon, info: 'Area', data: value.area!.name!),
-            InfoRow(icon: AppIcons.competitionNameIcon, info: 'Name', data: value.competitionName!),
-            InfoRow(icon: AppIcons.competitionTypeIcon, info: 'Type', data: value.competitionType!),
-            InfoRow(icon: AppIcons.startIcon, info: 'League Start Date', data: value.competitionStartDate!),
-            InfoRow(icon: AppIcons.endIcon, info: 'League End Date', data: value.competitionEndDate!),
+            CustomInfoRow(icon: AppIcons.competitionAreaIcon, info: 'Area', data: value.area!.name!),
+            CustomInfoRow(icon: AppIcons.competitionNameIcon, info: 'Name', data: value.competitionName!),
+            CustomInfoRow(icon: AppIcons.competitionTypeIcon, info: 'Type', data: value.competitionType!),
+            CustomInfoRow(icon: AppIcons.startIcon, info: 'League Start Date', data: value.competitionStartDate!),
+            CustomInfoRow(icon: AppIcons.endIcon, info: 'League End Date', data: value.competitionEndDate!),
           ],
         ),
         Row(

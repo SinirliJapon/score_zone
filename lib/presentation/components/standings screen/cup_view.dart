@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:score_zone/presentation/components/cup_standings.dart';
+import 'package:score_zone/presentation/components/standings%20screen/cup_standings.dart';
 import 'package:score_zone/presentation/components/standings%20screen/competition_info.dart';
 import 'package:score_zone/provider/standings_provider.dart';
 import 'package:score_zone/utils/colors.dart';

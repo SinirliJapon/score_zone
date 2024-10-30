@@ -1,11 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:score_zone/presentation/components/league%20screen/info_button.dart';
 import 'package:score_zone/utils/colors.dart';
-import 'package:score_zone/presentation/components/league_card.dart';
+import 'package:score_zone/presentation/components/league%20screen/league_card.dart';
 import 'package:score_zone/provider/competition_provider.dart';
-import 'package:score_zone/utils/functions.dart';
-import 'package:score_zone/utils/icons.dart';
 
 @RoutePage()
 class LeagueScreen extends StatelessWidget {
@@ -43,22 +42,6 @@ class LeagueScreen extends StatelessWidget {
         },
       ),
     );
-  }
-}
-
-class InfoButton extends StatelessWidget {
-  const InfoButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-        icon: const Icon(AppIcons.appInfoIcon),
-        onPressed: () {
-          String title = 'Welcome to Score Zone';
-          String details =
-              'Access the data of the popular leagues and cups in the world.\nSome data can be outdated or incomplete because of the free plan.\n';
-          Functions.showPopup(context, title, details);
-        });
   }
 }
 

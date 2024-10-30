@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:score_zone/utils/colors.dart';
+import 'package:score_zone/utils/functions.dart';
 import 'package:score_zone/utils/styles.dart';
 import 'package:score_zone/model/standings.dart';
-import 'package:score_zone/presentation/components/average_text.dart';
 import 'package:score_zone/presentation/components/build_image.dart';
 
 class CupStandings extends StatelessWidget {
@@ -75,7 +75,7 @@ class GroupContainer extends StatelessWidget {
                   DataCell(Text(data.won.toString())),
                   DataCell(Text(data.draw.toString())),
                   DataCell(Text(data.lost.toString())),
-                  DataCell(AverageText(goalDifference: data.goalDifference)),
+                  DataCell(Text(Functions.averageText(data.goalDifference), textAlign: TextAlign.center)),
                   DataCell(Text(data.points.toString(), style: Styles.dataPointTextStyle())),
                 ],
               );
