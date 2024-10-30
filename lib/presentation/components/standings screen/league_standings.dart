@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:score_zone/model/table_data.dart';
 import 'package:score_zone/utils/colors.dart';
 import 'package:score_zone/utils/functions.dart';
 import 'package:score_zone/utils/styles.dart';
-import 'package:score_zone/model/standings.dart';
 import 'package:score_zone/presentation/components/custom_data_row.dart';
 
 class LeagueStandings extends StatelessWidget {

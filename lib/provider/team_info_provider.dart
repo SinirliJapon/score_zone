@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:score_zone/model/scorers.dart';
-import 'package:score_zone/model/standings.dart';
+import 'package:score_zone/model/coach.dart';
+import 'package:score_zone/model/player.dart';
 import 'package:score_zone/model/match.dart';
+import 'package:score_zone/model/team.dart';
 import 'package:score_zone/services/api_service.dart';
 import 'package:score_zone/utils/functions.dart';
 

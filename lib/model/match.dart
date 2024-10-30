@@ -1,17 +1,17 @@
-import 'package:score_zone/model/competitions.dart';
-import 'package:score_zone/model/standings.dart';
+import 'package:score_zone/model/area.dart';
+import 'package:score_zone/model/competition.dart';
+import 'package:score_zone/model/season.dart';
+import 'package:score_zone/model/team.dart';
 
 class MatchBaseResponse {
+  final List<Match> matches;
+
   MatchBaseResponse({
     required this.matches,
   });
 
-  final List<Match> matches;
-
   MatchBaseResponse.fromJson(Map<String, dynamic> json)
-      : matches = (json['matches'] as List<dynamic>?)
-            ?.map((e) => Match.fromJson(e as Map<String, dynamic>))
-            .toList() ?? [];
+      : matches = (json['matches'] as List<dynamic>?)?.map((e) => Match.fromJson(e as Map<String, dynamic>)).toList() ?? [];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
@@ -70,8 +70,7 @@ class Match {
         awayTeam: json['awayTeam'] != null ? Team.fromJson(json['awayTeam']) : null,
         score: json['score'] != null ? Score.fromJson(json['score']) : null,
         odds: json['odds'] != null ? Odds.fromJson(json['odds']) : null,
-        referees:
-            json['referees'] != null ? List<Referee>.from(json['referees'].map((x) => Referee.fromJson(x))) : [],
+        referees: json['referees'] != null ? List<Referee>.from(json['referees'].map((x) => Referee.fromJson(x))) : [],
       );
 
   Map<String, dynamic> toJson() => {

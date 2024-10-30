@@ -1,10 +1,12 @@
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 import 'package:dio/dio.dart';
-import 'package:score_zone/model/competitions.dart';
+import 'package:score_zone/model/competition.dart';
 import 'package:score_zone/model/match.dart';
-import 'package:score_zone/model/scorers.dart';
+import 'package:score_zone/model/player.dart';
+import 'package:score_zone/model/scorer.dart';
 import 'package:score_zone/model/standings.dart';
+import 'package:score_zone/model/team.dart';
 
 part 'api_service.g.dart';
 

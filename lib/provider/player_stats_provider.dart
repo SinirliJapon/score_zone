@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:score_zone/model/scorers.dart';
+import 'package:score_zone/model/scorer.dart';
 import 'package:score_zone/services/api_service.dart';
 
 class PlayerStatsProvider extends ChangeNotifier {

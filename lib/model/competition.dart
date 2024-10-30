@@ -1,4 +1,13 @@
 class Competition {
+  final int? id;
+  final String? name;
+  final String? code;
+  final String? type;
+  final String? emblem;
+  final String? plan;
+  final int? numberOfAvailableSeasons;
+  final String? lastUpdated;
+  
   Competition({
     required this.id,
     required this.name,
@@ -9,15 +18,6 @@ class Competition {
     required this.numberOfAvailableSeasons,
     required this.lastUpdated,
   });
-
-  final int? id;
-  final String? name;
-  final String? code;
-  final String? type;
-  final String? emblem;
-  final String? plan;
-  final int? numberOfAvailableSeasons;
-  final String? lastUpdated;
 
   factory Competition.fromJson(Map<String, dynamic> json) {
     return Competition(
@@ -47,16 +47,12 @@ class Competition {
 }
 
 class CompetitionBaseResponse {
-  CompetitionBaseResponse({
-    required this.competitions,
-  });
-
   final List<Competition> competitions;
 
+  CompetitionBaseResponse({required this.competitions});
+
   CompetitionBaseResponse.fromJson(Map<String, dynamic> json)
-      : competitions = (json['competitions'] as List<dynamic>?)
-            ?.map((e) => Competition.fromJson(e as Map<String, dynamic>))
-            .toList() ?? [];
+      : competitions = (json['competitions'] as List<dynamic>?)?.map((e) => Competition.fromJson(e as Map<String, dynamic>)).toList() ?? [];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};

@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:score_zone/app_router/app_router.gr.dart';
-import 'package:score_zone/model/competitions.dart';
+import 'package:score_zone/model/competition.dart';
 import 'package:score_zone/presentation/components/build_image.dart';
 
 class LeagueCard extends StatelessWidget {

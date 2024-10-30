@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:score_zone/app_router/app_router.gr.dart';
-import 'package:score_zone/model/scorers.dart';
+import 'package:score_zone/model/player.dart';
 import 'package:score_zone/utils/colors.dart';
 import 'package:score_zone/utils/functions.dart';
 import 'package:score_zone/utils/styles.dart';

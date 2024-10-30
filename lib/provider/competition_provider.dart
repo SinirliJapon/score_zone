@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:score_zone/model/competitions.dart';
+import 'package:score_zone/model/competition.dart';
 import 'package:score_zone/services/api_service.dart';
 
 class CompetitionProvider extends ChangeNotifier {
