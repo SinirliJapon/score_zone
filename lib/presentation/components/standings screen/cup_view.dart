@@ -13,7 +13,6 @@ class CupView extends StatelessWidget {
   Widget build(BuildContext context) {
     final cupStandings = value.standings;
     return Scaffold(
-      backgroundColor: Colors.grey,
       appBar: AppBar(
         foregroundColor: secondaryText,
         backgroundColor: primaryText,

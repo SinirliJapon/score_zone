@@ -5,7 +5,7 @@ const leagueScreenColor = Color(0xFF00D06C);
 const standingsScreenColor = Color(0xFF38003C);
 const playerStatsScreenColor = Color(0xFFE90052);
 const matchesScreenColor = Color(0xFF89CFF0);
-const teamInfoScreenColor = Color(0xFFEBFF00);
+const teamInfoScreenColor = Color(0xFFFFD700); 
 
 // Text Colors
 const primaryText = Color(0xFF38003C);

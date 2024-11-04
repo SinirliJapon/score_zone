@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:marquee/marquee.dart';
 import 'package:score_zone/utils/colors.dart';
 
 abstract class Functions {
@@ -63,6 +64,24 @@ abstract class Functions {
     String lastName = parts.last;
     shortenedName += lastName;
     return shortenedName;
+  }
+
+  static infoTrailing(String data, double width) {
+    if (data.length > 20) {
+      return SizedBox(
+        width: width,
+        child: Marquee(
+          text: data,
+          velocity: 30.0,
+          blankSpace: 20.0,
+          scrollAxis: Axis.horizontal,
+          style: const TextStyle(fontSize: 16, color: primaryText),
+          startAfter: const Duration(seconds: 1),
+        ),
+      );
+    } else {
+      return Text(data);
+    }
   }
 
   static void showPopup(BuildContext context, String title, String details) {

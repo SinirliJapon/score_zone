@@ -9,12 +9,13 @@ import 'package:score_zone/utils/styles.dart';
 
 class MatchList extends StatelessWidget {
   final List<Match> matches;
-  final bool isScroll;
+  final bool isFinished;
 
-  const MatchList({Key? key, required this.matches, required this.isScroll}) : super(key: key);
+  const MatchList({Key? key, required this.matches, required this.isFinished}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final matchList = isFinished ? matches.reversed.toList() : matches;
     if (matches.isEmpty) {
       return const CustomInfoRow(icon: Icons.error, info: 'No Match Data Found', data: '');
     } else {
@@ -23,14 +24,14 @@ class MatchList extends StatelessWidget {
         child: ListView.separated(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: matches.length,
-          separatorBuilder: (context, index) => MatchDateSeparator(match: matches[index], matches: matches, index: index),
+          itemCount: matchList.length,
+          separatorBuilder: (context, index) => MatchDateSeparator(match: matchList[index], matches: matchList, index: index),
           itemBuilder: (context, index) {
-            final match = matches[index];
+            final match = matchList[index];
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                MatchHeader(index: index, match: match, currentMatchDate: matches[0].utcDate!),
+                MatchHeader(index: index, match: match, currentMatchDate: matchList[0].utcDate!),
                 Card(
                   elevation: 6.0,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),

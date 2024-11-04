@@ -22,33 +22,39 @@ class BuildImage extends StatelessWidget {
   }
 
   Widget _buildSvgImage(String finalUrl) {
-    return SizedBox(
-      height: width,
-      width: width,
-      child: ScalableImageWidget.fromSISource(
-        cache: cache,
-        clip: true,
-        reload: true,
-        isComplex: true,
-        fit: BoxFit.cover,
-        si: ScalableImageSource.fromSvgHttpUrl(Uri.parse(finalUrl)),
-        switcher: (BuildContext context, Widget? child) => _buildSwitcher(child),
-        onLoading: (BuildContext context) => _buildPlaceholder(),
-        onError: (BuildContext context) => _buildErrorWidget(),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(6.0),
+      child: SizedBox(
+        height: width,
+        width: width,
+        child: ScalableImageWidget.fromSISource(
+          cache: cache,
+          clip: true,
+          reload: true,
+          isComplex: true,
+          fit: BoxFit.cover,
+          si: ScalableImageSource.fromSvgHttpUrl(Uri.parse(finalUrl)),
+          switcher: (BuildContext context, Widget? child) => _buildSwitcher(child),
+          onLoading: (BuildContext context) => _buildPlaceholder(),
+          onError: (BuildContext context) => _buildErrorWidget(),
+        ),
       ),
     );
   }
 
   Widget _buildNetworkImage(String finalUrl) {
-    return SizedBox(
-      width: width,
-      height: width,
-      child: CachedNetworkImage(
-        imageUrl: finalUrl,
-        fit: BoxFit.cover,
-        fadeInDuration: const Duration(milliseconds: 500),
-        placeholder: (BuildContext context, String url) => _buildPlaceholder(),
-        errorWidget: (BuildContext context, String url, dynamic error) => _buildErrorWidget(),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(6.0),
+      child: SizedBox(
+        width: width,
+        height: width,
+        child: CachedNetworkImage(
+          imageUrl: finalUrl,
+          fit: BoxFit.cover,
+          fadeInDuration: const Duration(milliseconds: 500),
+          placeholder: (BuildContext context, String url) => _buildPlaceholder(),
+          errorWidget: (BuildContext context, String url, dynamic error) => _buildErrorWidget(),
+        ),
       ),
     );
   }

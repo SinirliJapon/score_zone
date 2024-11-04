@@ -76,7 +76,7 @@ class PlayerInfoScreen extends StatelessWidget {
                   primaryColor: teamInfoScreenColor,
                   secondaryColor: primaryText,
                   children: [
-                    MatchList(matches: matches, isScroll: false),
+                    MatchList(matches: matches, isFinished: true),
                   ],
                 ),
               ],

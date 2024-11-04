@@ -36,7 +36,7 @@ class LeagueMatchesScreen extends StatelessWidget {
                 CustomMatchDayPicker(value: value, leagueCode: leagueCode, totalMatchDays: value.totalMatchDay),
               ],
             ),
-            body: MatchList(matches: matches, isScroll: true),
+            body: MatchList(matches: matches, isFinished: true),
           );
         }
       },
