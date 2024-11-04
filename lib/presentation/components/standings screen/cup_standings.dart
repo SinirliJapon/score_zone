@@ -16,20 +16,23 @@ class CupStandings extends StatelessWidget {
     return Card(
       elevation: 6.0,
       color: premierSecondary,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(6.0),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: ListView.builder(
-            shrinkWrap: true,
-            primary: false,
-            cacheExtent: 300.0,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: standingsData.length,
-            itemBuilder: (BuildContext context, int index) {
-              final groupStandings = standingsData[index];
-              return GroupContainer(groupStandings);
-            },
+      child: Container(
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(6.0), border: Border.all(color: primaryText, width: 1.0)),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(6.0),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: ListView.builder(
+              shrinkWrap: true,
+              primary: false,
+              cacheExtent: 300.0,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: standingsData.length,
+              itemBuilder: (BuildContext context, int index) {
+                final groupStandings = standingsData[index];
+                return GroupContainer(groupStandings);
+              },
+            ),
           ),
         ),
       ),
@@ -100,23 +103,14 @@ class GroupName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            premierPrimary.withOpacity(0.85),
-            premierPrimary.withOpacity(0.65),
-          ],
-        ),
-      ),
+      color: secondaryText,
       child: Center(
         child: Text(
           "${groupStandings.group.toUpperCase()}",
           style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 22,
-            color: premierSecondary,
+            color: primaryText,
             letterSpacing: 1.2,
           ),
         ),
@@ -136,10 +130,7 @@ class TeamImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(children: [
-      ClipRRect(
-        borderRadius: BorderRadius.circular(6.0),
-        child: BuildImage(url: data.team.crest!, width: 30),
-      ),
+      BuildImage(url: data.team.crest!, width: 30),
       const SizedBox(width: 5),
       Text(data.team.tla!.toUpperCase()),
     ]);

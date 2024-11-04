@@ -96,7 +96,7 @@ abstract class Functions {
             titlePadding: const EdgeInsets.all(20),
             contentPadding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
             titleTextStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: primaryText),
-            contentTextStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: primaryText),
+            contentTextStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: greyText),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             backgroundColor: premierSecondary,
             alignment: Alignment.center,
