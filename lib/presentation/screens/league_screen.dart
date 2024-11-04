@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:score_zone/presentation/components/league%20screen/info_button.dart';
+import 'package:score_zone/presentation/components/league%20screen/app_title.dart';
 import 'package:score_zone/utils/colors.dart';
 import 'package:score_zone/presentation/components/league%20screen/league_card.dart';
 import 'package:score_zone/provider/competition_provider.dart';
@@ -17,24 +17,10 @@ class LeagueScreen extends StatelessWidget {
     });
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 75,
+        toolbarHeight: 100,
         backgroundColor: leagueScreenColor,
         foregroundColor: primaryText,
-        title: const Text('SCORE ZONE'),
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SizedBox(height: 75.0, child: Image.asset('assets/images/logo.png', fit: BoxFit.contain)),
-        ),
-        titleTextStyle: const TextStyle(
-          color: primaryText,
-          fontWeight: FontWeight.bold,
-          fontStyle: FontStyle.italic,
-          textBaseline: TextBaseline.ideographic,
-          overflow: TextOverflow.ellipsis,
-          fontSize: 24,
-          letterSpacing: 1.2,
-        ),
-        actions: const [InfoButton()],
+        title: const AppTitle(),
       ),
       backgroundColor: leagueScreenColor,
       body: Consumer<CompetitionProvider>(
