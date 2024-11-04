@@ -13,3 +13,17 @@ class AppRouter extends $AppRouter {
         AutoRoute(page: PlayerInfoRoute.page)
       ];
 }
+
+// This can be add the animations to the routes
+
+// customAppRoute(PageInfo<dynamic> page, bool initial) {
+//   return CustomRoute(
+//     page: page,
+//     initial: initial,
+//     maintainState: true,
+//     keepHistory: true,
+//     transitionsBuilder: TransitionsBuilders.slideLeft,
+//     durationInMilliseconds: 400,
+//     reverseDurationInMilliseconds: 400,
+//   );
+// }

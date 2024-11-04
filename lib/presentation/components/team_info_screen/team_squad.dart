@@ -22,22 +22,25 @@ class TeamSquad extends StatelessWidget {
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: SizedBox(
-        width: screenWidth,
-        child: DataTable(
-          dataRowColor: Styles.dataRowColor(),
-          dataTextStyle: Styles.dataTextStyle(),
-          headingRowColor: Styles.headingTeamDataRowColor(),
-          headingTextStyle: Styles.headingTeamTextStyle(),
-          border: TableBorder.all(color: primaryText, width: 0.5),
-          horizontalMargin: 20,
-          columnSpacing: 20,
-          columns: const <DataColumn>[
-            DataColumn(label: Text('Player')),
-            DataColumn(label: Text('Age')),
-            DataColumn(label: Text('Nationality')),
-          ],
-          rows: teamSquad.map((player) => _buildDataRow(context, player)).toList(),
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: SizedBox(
+          width: screenWidth - 8,
+          child: DataTable(
+            dataRowColor: Styles.dataRowColor(),
+            dataTextStyle: Styles.dataTextStyle(),
+            headingRowColor: Styles.headingTeamDataRowColor(),
+            headingTextStyle: Styles.headingTeamTextStyle(),
+            border: TableBorder.all(color: primaryText, width: 1.0, borderRadius: BorderRadius.circular(6.0)),
+            horizontalMargin: 20,
+            columnSpacing: 20,
+            columns: const <DataColumn>[
+              DataColumn(label: Text('Player')),
+              DataColumn(label: Text('Age')),
+              DataColumn(label: Text('Nationality')),
+            ],
+            rows: teamSquad.map((player) => _buildDataRow(context, player)).toList(),
+          ),
         ),
       ),
     );
