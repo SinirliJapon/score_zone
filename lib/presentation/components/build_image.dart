@@ -67,6 +67,10 @@ class BuildImage extends StatelessWidget {
       "https://crests.football-data.org/ge.svg":
           "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Flag_of_Georgia.svg/510px-Flag_of_Georgia.svg.png",
       "https://crests.football-data.org/CLI.svg": "https://brandlogos.net/wp-content/uploads/2022/11/copa_libertadores-logo_brandlogos.net_fh1mg.png",
+      "https://crests.football-data.org/762.png":
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Argentina_Flag_Icon.png/640px-Argentina_Flag_Icon.png",
+      "https://crests.football-data.org/791.svg":
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Flag_of_Ecuador.svg/510px-Flag_of_Ecuador.svg.png",
     };
     return urlMap[originalUrl] ?? originalUrl;
   }
