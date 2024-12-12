@@ -12,6 +12,7 @@ const primaryText = Color(0xFF38003C);
 const secondaryText = Color(0xFFFFFFFF);
 const darkText = Color(0xFF000000);
 const greyText = Color(0xFF757575);
+const headerText = Color(0xFF333333);
 
 // League Colors if needed
 

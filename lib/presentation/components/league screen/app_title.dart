@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:score_zone/utils/colors.dart';
 import 'package:score_zone/utils/functions.dart';
 
 class AppTitle extends StatelessWidget {
@@ -20,8 +19,8 @@ class AppTitle extends StatelessWidget {
         children: [
           Image.asset('assets/images/logo.png', fit: BoxFit.cover, width: 100),
           const SizedBox(width: 10),
-          Text('SCORE', style: GoogleFonts.inter(color: primaryText, fontWeight: FontWeight.w500, fontSize: 40)),
-          Text('ZONE', style: GoogleFonts.inter(color: primaryText, fontWeight: FontWeight.w900, fontSize: 40)),
+          Text('SCORE', style: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: 40)),
+          Text('ZONE', style: GoogleFonts.inter(fontWeight: FontWeight.w900, fontSize: 40)),
         ],
       ),
     );

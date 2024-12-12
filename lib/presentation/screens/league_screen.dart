@@ -19,7 +19,7 @@ class LeagueScreen extends StatelessWidget {
       appBar: AppBar(
         toolbarHeight: 100,
         backgroundColor: leagueScreenColor,
-        foregroundColor: primaryText,
+        foregroundColor: headerText,
         title: const AppTitle(),
       ),
       backgroundColor: leagueScreenColor,
